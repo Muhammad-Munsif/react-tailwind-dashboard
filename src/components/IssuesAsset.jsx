@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import { Calendar, User, MessageSquare, Send } from 'lucide-react';
+import React, { useState } from "react";
+import { Calendar, User, MessageSquare, Send } from "lucide-react";
 
 const IssueAsset = ({ asset, onClose }) => {
   const [formData, setFormData] = useState({
-    employeeId: '',
-    employeeName: '',
-    issueDate: new Date().toISOString().split('T')[0],
-    expectedReturn: '',
-    comments: ''
+    employeeId: "",
+    employeeName: "",
+    issueDate: new Date().toISOString().split("T")[0],
+    expectedReturn: "",
+    comments: "",
   });
 
   const employees = [
-    { id: 'EMP001', name: 'John Doe', department: 'IT' },
-    { id: 'EMP002', name: 'Jane Smith', department: 'HR' },
-    { id: 'EMP003', name: 'Bob Johnson', department: 'Finance' }
+    { id: "EMP001", name: "John Doe", department: "IT" },
+    { id: "EMP002", name: "Jane Smith", department: "HR" },
+    { id: "EMP003", name: "Bob Johnson", department: "Finance" },
   ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Asset issued:', { asset, ...formData });
+    console.log("Asset issued:", { asset, ...formData });
     // API call here
     onClose();
   };
@@ -28,7 +28,9 @@ const IssueAsset = ({ asset, onClose }) => {
       <div className="bg-white rounded-xl shadow-xl w-full max-w-md">
         <div className="p-6 border-b">
           <h2 className="text-xl font-bold">Issue Asset</h2>
-          <p className="text-gray-600 mt-1">{asset?.name} - {asset?.serial}</p>
+          <p className="text-gray-600 mt-1">
+            {asset?.name} - {asset?.serial}
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
@@ -41,19 +43,23 @@ const IssueAsset = ({ asset, onClose }) => {
             <select
               value={formData.employeeId}
               onChange={(e) => {
-                const selected = employees.find(emp => emp.id === e.target.value);
+                const selected = employees.find(
+                  (emp) => emp.id === e.target.value
+                );
                 setFormData({
                   ...formData,
                   employeeId: e.target.value,
-                  employeeName: selected?.name || ''
+                  employeeName: selected?.name || "",
                 });
               }}
               required
               className="w-full px-4 py-2 border rounded-lg"
             >
               <option value="">Select employee</option>
-              {employees.map(emp => (
-                <option key={emp.id} value={emp.id}>{emp.name} ({emp.department})</option>
+              {employees.map((emp) => (
+                <option key={emp.id} value={emp.id}>
+                  {emp.name} ({emp.department})
+                </option>
               ))}
             </select>
           </div>
@@ -67,7 +73,9 @@ const IssueAsset = ({ asset, onClose }) => {
             <input
               type="date"
               value={formData.issueDate}
-              onChange={(e) => setFormData({...formData, issueDate: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, issueDate: e.target.value })
+              }
               required
               className="w-full px-4 py-2 border rounded-lg"
             />
@@ -82,7 +90,9 @@ const IssueAsset = ({ asset, onClose }) => {
             <input
               type="date"
               value={formData.expectedReturn}
-              onChange={(e) => setFormData({...formData, expectedReturn: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, expectedReturn: e.target.value })
+              }
               min={formData.issueDate}
               required
               className="w-full px-4 py-2 border rounded-lg"
@@ -97,7 +107,9 @@ const IssueAsset = ({ asset, onClose }) => {
             </label>
             <textarea
               value={formData.comments}
-              onChange={(e) => setFormData({...formData, comments: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, comments: e.target.value })
+              }
               rows="3"
               className="w-full px-4 py-2 border rounded-lg"
               placeholder="Additional notes..."

@@ -1,29 +1,59 @@
-import React, { useState } from 'react';
-import { 
-  FileText, 
-  Download, 
-  Printer, 
+import React, { useState } from "react";
+import {
+  FileText,
+  Download,
+  Printer,
   BarChart3,
   Calendar,
   Filter,
-  Eye
-} from 'lucide-react';
+  Eye,
+} from "lucide-react";
 
 const Reports = () => {
   const [selectedReport, setSelectedReport] = useState(null);
-  const [dateRange, setDateRange] = useState({ start: '', end: '' });
+  const [dateRange, setDateRange] = useState({ start: "", end: "" });
 
   const reports = [
-    { id: 1, title: 'Asset Summary Report', icon: FileText, description: 'Overview of all assets' },
-    { id: 2, title: 'Issued Asset Report', icon: BarChart3, description: 'Currently issued assets' },
-    { id: 3, title: 'Employee Asset Report', icon: FileText, description: 'Assets per employee' },
-    { id: 4, title: 'Vendor Purchase Report', icon: FileText, description: 'Purchases by vendor' },
-    { id: 5, title: 'Warranty Expiry Report', icon: Calendar, description: 'Warranty status' },
-    { id: 6, title: 'Damaged Asset Report', icon: FileText, description: 'Damaged assets list' }
+    {
+      id: 1,
+      title: "Asset Summary Report",
+      icon: FileText,
+      description: "Overview of all assets",
+    },
+    {
+      id: 2,
+      title: "Issued Asset Report",
+      icon: BarChart3,
+      description: "Currently issued assets",
+    },
+    {
+      id: 3,
+      title: "Employee Asset Report",
+      icon: FileText,
+      description: "Assets per employee",
+    },
+    {
+      id: 4,
+      title: "Vendor Purchase Report",
+      icon: FileText,
+      description: "Purchases by vendor",
+    },
+    {
+      id: 5,
+      title: "Warranty Expiry Report",
+      icon: Calendar,
+      description: "Warranty status",
+    },
+    {
+      id: 6,
+      title: "Damaged Asset Report",
+      icon: FileText,
+      description: "Damaged assets list",
+    },
   ];
 
   const generateReport = (report) => {
-    console.log('Generating report:', report.title, 'Date range:', dateRange);
+    console.log("Generating report:", report.title, "Date range:", dateRange);
     setSelectedReport(report);
   };
 
@@ -31,7 +61,9 @@ const Reports = () => {
     <div className="p-6 space-y-6">
       <div>
         <h1 className="text-2xl font-bold mb-2">Reports & Analytics</h1>
-        <p className="text-gray-600">Generate and export various inventory reports</p>
+        <p className="text-gray-600">
+          Generate and export various inventory reports
+        </p>
       </div>
 
       {/* Date Range Filter */}
@@ -45,14 +77,18 @@ const Reports = () => {
             <input
               type="date"
               value={dateRange.start}
-              onChange={(e) => setDateRange({...dateRange, start: e.target.value})}
+              onChange={(e) =>
+                setDateRange({ ...dateRange, start: e.target.value })
+              }
               className="px-4 py-2 border rounded-lg"
             />
             <span className="self-center">to</span>
             <input
               type="date"
               value={dateRange.end}
-              onChange={(e) => setDateRange({...dateRange, end: e.target.value})}
+              onChange={(e) =>
+                setDateRange({ ...dateRange, end: e.target.value })
+              }
               className="px-4 py-2 border rounded-lg"
             />
           </div>
@@ -65,10 +101,13 @@ const Reports = () => {
 
       {/* Reports Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {reports.map(report => {
+        {reports.map((report) => {
           const Icon = report.icon;
           return (
-            <div key={report.id} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+            <div
+              key={report.id}
+              className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow"
+            >
               <div className="flex items-center justify-between mb-4">
                 <div className="p-3 bg-blue-100 rounded-lg">
                   <Icon className="w-6 h-6 text-blue-600" />
