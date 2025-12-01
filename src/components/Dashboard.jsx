@@ -460,25 +460,176 @@
 
 // export default Dashboard;
 
-import React from "react";
-import data from "../mockData/data";
-import BarChart from "./BarChart";
+// import React from "react";
+// import data from "../mockData/data";
+// import BarChart from "./BarChart";
+
+// const Dashboard = () => {
+//   return (
+//     <div>
+//       {/* <h1>Dashboad</h1> */}
+//       <div>
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 ">
+//           {data.dashboard.asset.map((item) => (
+//             <div key={item.asset} className="bg-white p-5 rounded-lg shadow">
+//               <h1 className="text-1xl font-bold text-gray-400">{item.name}</h1>
+//               <p className="text-2xl font-bold text-gray-500">{item.value}</p>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//       <BarChart />
+//     </div>
+//   );
+// };
+
+// export default Dashboard;
+
+
+import React from 'react';
+import { 
+  Package, 
+  Users, 
+  TrendingUp, 
+  AlertCircle,
+  Bell,
+  BarChart3,
+  PieChart
+} from 'lucide-react';
 
 const Dashboard = () => {
+  const stats = [
+    { label: 'Total Assets', value: '1,234', icon: Package, color: 'bg-blue-500' },
+    { label: 'Total Issued Assets', value: '567', icon: Users, color: 'bg-green-500' },
+    { label: 'Assets in Stock', value: '432', icon: TrendingUp, color: 'bg-purple-500' },
+    { label: 'Damaged Assets', value: '89', icon: AlertCircle, color: 'bg-red-500' }
+  ];
+
   return (
-    <div>
-      {/* <h1>Dashboad</h1> */}
-      <div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 ">
-          {data.dashboard.asset.map((item) => (
-            <div key={item.asset} className="bg-white p-5 rounded-lg shadow">
-              <h1 className="text-1xl font-bold text-gray-400">{item.name}</h1>
-              <p className="text-2xl font-bold text-gray-500">{item.value}</p>
+    <div className="p-4 md:p-6 space-y-6">
+      {/* Header */}
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Dashboard</h1>
+        <div className="relative">
+          <Bell className="w-6 h-6 text-gray-600 cursor-pointer" />
+          <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+        </div>
+      </div>
+
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        {stats.map((stat, index) => {
+          const Icon = stat.icon;
+          return (
+            <div 
+              key={index} 
+              className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600">{stat.label}</p>
+                  <p className="text-2xl md:text-3xl font-bold mt-2">{stat.value}</p>
+                </div>
+                <div className={`${stat.color} p-3 rounded-lg`}>
+                  <Icon className="w-6 h-6 text-white" />
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Charts Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Pie Chart Placeholder */}
+        <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold">Asset Categories</h2>
+            <PieChart className="w-5 h-5 text-gray-500" />
+          </div>
+          <div className="h-64 flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-40 h-40 rounded-full border-4 border-blue-200 mx-auto mb-4"></div>
+              <p className="text-gray-500">Pie Chart Visualization</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Bar Chart Placeholder */}
+        <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold">Monthly Asset Usage</h2>
+            <BarChart3 className="w-5 h-5 text-gray-500" />
+          </div>
+          <div className="h-64 flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-full h-40 flex items-end justify-center space-x-4">
+                {[60, 40, 80, 60, 100, 80, 40].map((height, index) => (
+                  <div 
+                    key={index} 
+                    className="w-8 bg-blue-500 rounded-t"
+                    style={{ height: `${height}%` }}
+                  ></div>
+                ))}
+              </div>
+              <p className="text-gray-500 mt-4">Bar Chart Visualization</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Alerts Panel */}
+      <div className="bg-white rounded-xl shadow-md p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold">Recent Alerts</h2>
+          <AlertCircle className="w-5 h-5 text-gray-500" />
+        </div>
+        <div className="space-y-3">
+          {[
+            { text: '5 laptops warranty expires next month', type: 'warning' },
+            { text: 'Mouse stock is low (less than 10)', type: 'error' },
+            { text: '3 assets need maintenance', type: 'info' }
+          ].map((alert, index) => (
+            <div 
+              key={index} 
+              className={`p-3 rounded-lg border-l-4 ${
+                alert.type === 'error' 
+                  ? 'bg-red-50 border-red-500' 
+                  : alert.type === 'warning'
+                  ? 'bg-yellow-50 border-yellow-500'
+                  : 'bg-blue-50 border-blue-500'
+              }`}
+            >
+              <p className="text-sm">{alert.text}</p>
             </div>
           ))}
         </div>
       </div>
-      <BarChart />
+
+      {/* Warranty Section */}
+      <div className="bg-white rounded-xl shadow-md p-6">
+        <h2 className="text-lg font-semibold mb-4">Upcoming Warranty Expiry (Next 30 Days)</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="text-left text-gray-600 border-b">
+                <th className="pb-2">Asset Name</th>
+                <th className="pb-2">Category</th>
+                <th className="pb-2">Expiry Date</th>
+                <th className="pb-2">Days Left</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b hover:bg-gray-50">
+                <td className="py-3">Dell Laptop XPS 13</td>
+                <td className="py-3">Laptop</td>
+                <td className="py-3">2024-01-15</td>
+                <td className="py-3"><span className="text-red-600 font-semibold">15</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
