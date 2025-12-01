@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
-import { FolderPlus, Edit2, Trash2, Package } from 'lucide-react';
+import React, { useState } from "react";
+import { FolderPlus, Edit2, Trash2, Package } from "lucide-react";
 
 const CategoryManagement = () => {
   const [categories, setCategories] = useState([
-    { id: 1, name: 'Laptops', count: 45, color: 'bg-blue-100 text-blue-800' },
-    { id: 2, name: 'Monitors', count: 32, color: 'bg-green-100 text-green-800' },
-    { id: 3, name: 'Keyboards', count: 78, color: 'bg-purple-100 text-purple-800' },
-    { id: 4, name: 'Mice', count: 65, color: 'bg-yellow-100 text-yellow-800' },
-    { id: 5, name: 'Servers', count: 12, color: 'bg-red-100 text-red-800' }
+    { id: 1, name: "Laptops", count: 45, color: "bg-blue-100 text-blue-800" },
+    {
+      id: 2,
+      name: "Monitors",
+      count: 32,
+      color: "bg-green-100 text-green-800",
+    },
+    {
+      id: 3,
+      name: "Keyboards",
+      count: 78,
+      color: "bg-purple-100 text-purple-800",
+    },
+    { id: 4, name: "Mice", count: 65, color: "bg-yellow-100 text-yellow-800" },
+    { id: 5, name: "Servers", count: 12, color: "bg-red-100 text-red-800" },
   ]);
 
   const [showAdd, setShowAdd] = useState(false);
-  const [newCategory, setNewCategory] = useState('');
+  const [newCategory, setNewCategory] = useState("");
 
   const handleAdd = () => {
     if (newCategory.trim()) {
@@ -19,10 +29,10 @@ const CategoryManagement = () => {
         id: categories.length + 1,
         name: newCategory.trim(),
         count: 0,
-        color: 'bg-gray-100 text-gray-800'
+        color: "bg-gray-100 text-gray-800",
       };
       setCategories([...categories, newCat]);
-      setNewCategory('');
+      setNewCategory("");
       setShowAdd(false);
     }
   };
@@ -75,8 +85,11 @@ const CategoryManagement = () => {
 
       {/* Categories Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {categories.map(category => (
-          <div key={category.id} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+        {categories.map((category) => (
+          <div
+            key={category.id}
+            className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow"
+          >
             <div className="flex items-center justify-between mb-4">
               <div className={`p-3 rounded-lg ${category.color}`}>
                 <Package className="w-6 h-6" />

@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
-import { UserPlus, Mail, Phone, Building, Briefcase } from 'lucide-react';
+import React, { useState } from "react";
+import { UserPlus, Mail, Phone, Building, Briefcase } from "lucide-react";
 
 const AddEmployee = ({ onClose }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    employeeId: '',
-    department: '',
-    designation: '',
-    email: '',
-    phone: ''
+    name: "",
+    employeeId: "",
+    department: "",
+    designation: "",
+    email: "",
+    phone: "",
   });
 
-  const departments = ['IT', 'HR', 'Finance', 'Sales', 'Marketing', 'Operations'];
+  const departments = [
+    "IT",
+    "HR",
+    "Finance",
+    "Sales",
+    "Marketing",
+    "Operations",
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Employee added:', formData);
+    console.log("Employee added:", formData);
     // API call here
     onClose();
   };
@@ -39,7 +46,9 @@ const AddEmployee = ({ onClose }) => {
             <input
               type="text"
               value={formData.name}
-              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
               required
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               placeholder="John Doe"
@@ -54,7 +63,9 @@ const AddEmployee = ({ onClose }) => {
             <input
               type="text"
               value={formData.employeeId}
-              onChange={(e) => setFormData({...formData, employeeId: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, employeeId: e.target.value })
+              }
               required
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               placeholder="EMP001"
@@ -70,13 +81,17 @@ const AddEmployee = ({ onClose }) => {
               </label>
               <select
                 value={formData.department}
-                onChange={(e) => setFormData({...formData, department: e.target.value})}
+                onChange={(e) =>
+                  setFormData({ ...formData, department: e.target.value })
+                }
                 required
                 className="w-full px-4 py-2 border rounded-lg"
               >
                 <option value="">Select department</option>
-                {departments.map(dept => (
-                  <option key={dept} value={dept}>{dept}</option>
+                {departments.map((dept) => (
+                  <option key={dept} value={dept}>
+                    {dept}
+                  </option>
                 ))}
               </select>
             </div>
@@ -90,7 +105,9 @@ const AddEmployee = ({ onClose }) => {
               <input
                 type="text"
                 value={formData.designation}
-                onChange={(e) => setFormData({...formData, designation: e.target.value})}
+                onChange={(e) =>
+                  setFormData({ ...formData, designation: e.target.value })
+                }
                 required
                 className="w-full px-4 py-2 border rounded-lg"
                 placeholder="Software Engineer"
@@ -107,7 +124,9 @@ const AddEmployee = ({ onClose }) => {
             <input
               type="email"
               value={formData.email}
-              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
               required
               className="w-full px-4 py-2 border rounded-lg"
               placeholder="john@company.com"
@@ -123,7 +142,9 @@ const AddEmployee = ({ onClose }) => {
             <input
               type="tel"
               value={formData.phone}
-              onChange={(e) => setFormData({...formData, phone: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, phone: e.target.value })
+              }
               required
               className="w-full px-4 py-2 border rounded-lg"
               placeholder="+1 (555) 123-4567"
