@@ -13,7 +13,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 export default function BarChart() {
   const data = {
-    labels: ["Total Assets", "Total Issued", "", "Apr", "May", "Jun"],
+    labels: ["Total Assets", "Total Issued", "Assets In Stock", "Damaged Assets",],
     datasets: [
       {
         label: "Sales",
@@ -23,8 +23,7 @@ export default function BarChart() {
           "green",
           "blue",
           "orange",
-          "purple",
-          "brown"
+   
         ],
         borderWidth: 1,
       },
@@ -39,7 +38,7 @@ export default function BarChart() {
   };
 
   return (
-    <div style={{ width: "600px", margin: "0 auto" }}>
+    <div style={{ width: "100%", margin: "0 auto" }} className=" bg-white shadow-md p-5 rounded-lg mb-10">
       <Bar data={data} options={options} />
     </div>
   );

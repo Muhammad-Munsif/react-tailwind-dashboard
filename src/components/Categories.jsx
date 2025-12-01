@@ -45,7 +45,7 @@ export default function Categories({ categories, onAddCategory, onEditCategory, 
   return (
     <>
         <Dashboard></Dashboard>
-      <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-6">
+      <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-6 mt-10">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-4 md:mb-0">Categories</h2>
           
