@@ -6,7 +6,7 @@ const data = {
       asset : [
         {name: "Total Assets", value: 150},
         {name: "Total Issued", value: 45},
-        {name: "In Stock", value: 92},
+        {name: "Assets In Stock", value: 92},
         {name: "Damaged Assets", value: 13},
         // {name: "Upcoming Warranty Expiry", value: 7},
       ],

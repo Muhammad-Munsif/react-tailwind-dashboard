@@ -462,6 +462,7 @@
 
 import React from 'react'
 import  data from '../mockData/data'
+import BarChart from './BarChart'
 
 const Dashboard = () => {
   return (
@@ -478,6 +479,7 @@ const Dashboard = () => {
         ))}
         </div>
       </div>
+      <BarChart/>
     </div>
   )
 }
