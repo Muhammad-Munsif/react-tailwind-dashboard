@@ -3,7 +3,12 @@ import { Edit2, Trash2, Check, X, Plus } from "lucide-react";
 import Dashboard from "./Dashboard";
 import AssetManagement from "./AssetManagement";
 
-export default function Categories({ categories, onAddCategory, onEditCategory, onDeleteCategory }) {
+export default function Categories({
+  categories,
+  onAddCategory,
+  onEditCategory,
+  onDeleteCategory,
+}) {
   const [newCategory, setNewCategory] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editName, setEditName] = useState("");
@@ -38,18 +43,20 @@ export default function Categories({ categories, onAddCategory, onEditCategory, 
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       saveEdit();
     }
   };
 
   return (
     <>
-        <Dashboard></Dashboard>
+      <Dashboard></Dashboard>
       <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-6 mt-10">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 md:mb-0">Categories</h2>
-          
+          <h2 className="text-2xl font-bold text-gray-800 mb-4 md:mb-0">
+            Categories
+          </h2>
+
           <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
             <input
               type="text"
@@ -57,7 +64,7 @@ export default function Categories({ categories, onAddCategory, onEditCategory, 
               onChange={(e) => setNewCategory(e.target.value)}
               placeholder="Enter category name"
               className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              onKeyPress={(e) => e.key === 'Enter' && handleAddCategory()}
+              onKeyPress={(e) => e.key === "Enter" && handleAddCategory()}
             />
             <button
               onClick={handleAddCategory}
@@ -73,20 +80,35 @@ export default function Categories({ categories, onAddCategory, onEditCategory, 
           <table className="w-full min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  ID
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Name
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Created
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {categories.map((category) => (
-                <tr key={category.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{category.id}</td>
+                <tr
+                  key={category.id}
+                  className="hover:bg-gray-50 transition-colors"
+                >
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {category.id}
+                  </td>
                   <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {category.name}
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{category.created}</td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {category.created}
+                  </td>
                   <td className="px-4 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">
                       <button
@@ -107,7 +129,7 @@ export default function Categories({ categories, onAddCategory, onEditCategory, 
               ))}
             </tbody>
           </table>
-          
+
           {categories.length === 0 && (
             <div className="text-center py-8 text-gray-500">
               No categories found. Add your first category above.
@@ -131,7 +153,7 @@ export default function Categories({ categories, onAddCategory, onEditCategory, 
                 <X className="w-5 h-5" />
               </button>
             </div>
-            
+
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Category Name
@@ -146,7 +168,9 @@ export default function Categories({ categories, onAddCategory, onEditCategory, 
                 autoFocus
               />
               {!editName.trim() && (
-                <p className="text-red-500 text-sm mt-1">Category name cannot be empty</p>
+                <p className="text-red-500 text-sm mt-1">
+                  Category name cannot be empty
+                </p>
               )}
             </div>
 
@@ -169,7 +193,7 @@ export default function Categories({ categories, onAddCategory, onEditCategory, 
           </div>
         </div>
       )}
-      <AssetManagement/>
+      <AssetManagement />
     </>
   );
 }

@@ -80,22 +80,22 @@
 //     <>
 //       {/* Mobile Overlay */}
 //       {isOpen && (
-//         <div 
+//         <div
 //           className="fixed inset-0 z-20 bg-black bg-opacity-50 md:hidden"
 //           onClick={closeSidebar}
 //         ></div>
 //       )}
-      
+
 //       {/* Sidebar */}
 //       <div className={`
 //         fixed inset-y-0 left-0 z-30 w-64 bg-gray-800 transform transition duration-300 ease-in-out
-//         ${isOpen ? 'translate-x-0' : '-translate-x-full'} 
+//         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
 //         md:translate-x-0
 //       `}>
 //         <div className="flex items-center justify-center h-16 bg-gray-900">
 //           <h1 className="text-white text-xl font-bold">Dashboard</h1>
 //         </div>
-        
+
 //         <nav className="mt-8">
 //           <div className="px-4 space-y-2">
 //             <button
@@ -110,7 +110,7 @@
 //               <i className="fas fa-tachometer-alt mr-3"></i>
 //               Dashboard
 //             </button>
-            
+
 //             <button
 //               onClick={() => {
 //                 setActiveComponent('categories');
@@ -123,7 +123,7 @@
 //               <i className="fas fa-list mr-3"></i>
 //               Categories
 //             </button>
-            
+
 //             <button
 //               onClick={() => {
 //                 setActiveComponent('subcategories');
@@ -157,7 +157,7 @@
 //           </button>
 //           <h1 className="ml-2 md:ml-0 text-xl font-semibold text-gray-800">Admin Panel</h1>
 //         </div>
-        
+
 //         <div className="flex items-center space-x-4">
 //           <div className="relative">
 //             <input
@@ -167,7 +167,7 @@
 //             />
 //             <i className="fas fa-search absolute left-3 top-3 text-gray-400 hidden md:block"></i>
 //           </div>
-          
+
 //           <div className="relative">
 //             <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-full">
 //               <i className="fas fa-bell"></i>
@@ -176,7 +176,7 @@
 //               3
 //             </span>
 //           </div>
-          
+
 //           <div className="flex items-center">
 //             <img
 //               className="h-8 w-8 rounded-full object-cover"
@@ -419,24 +419,24 @@
 //   return (
 //     <div className="bg-white rounded-lg shadow-md p-6">
 //       <h2 className="text-2xl font-bold text-gray-800 mb-6">Dashboard Overview</h2>
-      
+
 //       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
 //         <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
 //           <h3 className="text-lg font-semibold text-blue-800 mb-2">Total Categories</h3>
 //           <p className="text-3xl font-bold text-blue-600">{categoriesCount}</p>
 //         </div>
-        
+
 //         <div className="bg-green-50 p-6 rounded-lg border border-green-100">
 //           <h3 className="text-lg font-semibold text-green-800 mb-2">Total Subcategories</h3>
 //           <p className="text-3xl font-bold text-green-600">42</p>
 //         </div>
-        
+
 //         <div className="bg-purple-50 p-6 rounded-lg border border-purple-100">
 //           <h3 className="text-lg font-semibold text-purple-800 mb-2">Active Users</h3>
 //           <p className="text-3xl font-bold text-purple-600">1,248</p>
 //         </div>
 //       </div>
-      
+
 //       <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
 //         <h3 className="text-xl font-semibold text-gray-800 mb-4">Recent Activity</h3>
 //         <ul className="space-y-3">
@@ -460,28 +460,27 @@
 
 // export default Dashboard;
 
-import React from 'react'
-import  data from '../mockData/data'
-import BarChart from './BarChart'
+import React from "react";
+import data from "../mockData/data";
+import BarChart from "./BarChart";
 
 const Dashboard = () => {
   return (
     <div>
       {/* <h1>Dashboad</h1> */}
       <div>
-
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 '>
-        {data.dashboard.asset.map((item) => (
-            <div key={item.asset} className='bg-white p-5 rounded-lg shadow'>
-            <h1 className='text-1xl font-bold text-gray-400'>{item.name}</h1>
-            <p className='text-2xl font-bold text-gray-500'>{item.value}</p>
-          </div>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 ">
+          {data.dashboard.asset.map((item) => (
+            <div key={item.asset} className="bg-white p-5 rounded-lg shadow">
+              <h1 className="text-1xl font-bold text-gray-400">{item.name}</h1>
+              <p className="text-2xl font-bold text-gray-500">{item.value}</p>
+            </div>
+          ))}
         </div>
       </div>
-      <BarChart/>
+      <BarChart />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
