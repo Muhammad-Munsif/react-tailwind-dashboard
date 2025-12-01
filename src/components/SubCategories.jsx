@@ -1,5 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ChevronDown, Search, Clock, Folder, Plus, Trash2, Edit2, Check, X } from "lucide-react";
+import {
+  ChevronDown,
+  Search,
+  Clock,
+  Folder,
+  Plus,
+  Trash2,
+  Edit2,
+  Check,
+  X,
+} from "lucide-react";
 
 export default function SubCategories({ categories }) {
   const [open, setOpen] = useState(false);
@@ -9,26 +19,28 @@ export default function SubCategories({ categories }) {
   const [selectedTime, setSelectedTime] = useState("");
   const [newSubcategory, setNewSubcategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  
+
   // Store subcategories by category ID to preserve data
   const [subcategoriesByCategory, setSubcategoriesByCategory] = useState({});
-  
+
   // Edit state
   const [editingSubcategoryId, setEditingSubcategoryId] = useState(null);
   const [editSubcategoryName, setEditSubcategoryName] = useState("");
-  
+
   const dropdownRef = useRef();
 
   // Update current time every second
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      setCurrentTime(now.toLocaleTimeString('en-US', { 
-        hour12: true,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      }));
+      setCurrentTime(
+        now.toLocaleTimeString("en-US", {
+          hour12: true,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })
+      );
     };
 
     updateTime();
@@ -38,10 +50,12 @@ export default function SubCategories({ categories }) {
   }, []);
 
   // Get subcategories for the currently selected category
-  const currentSubcategories = selected ? subcategoriesByCategory[selected.id] || [] : [];
+  const currentSubcategories = selected
+    ? subcategoriesByCategory[selected.id] || []
+    : [];
 
   // Filter subcategories based on search term
-  const filteredSubcategories = currentSubcategories.filter(sub =>
+  const filteredSubcategories = currentSubcategories.filter((sub) =>
     sub.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -76,25 +90,25 @@ export default function SubCategories({ categories }) {
         name: newSubcategory,
         parentCategory: selected.name,
         parentCategoryId: selected.id,
-        created: new Date().toISOString().split('T')[0],
-        createdTime: currentTime
+        created: new Date().toISOString().split("T")[0],
+        createdTime: currentTime,
       };
-      
+
       // Update subcategories for the specific category
-      setSubcategoriesByCategory(prev => ({
+      setSubcategoriesByCategory((prev) => ({
         ...prev,
-        [selected.id]: [...(prev[selected.id] || []), newSub]
+        [selected.id]: [...(prev[selected.id] || []), newSub],
       }));
-      
+
       setNewSubcategory("");
     }
   };
 
   const handleDeleteSubcategory = (id) => {
     if (selected) {
-      setSubcategoriesByCategory(prev => ({
+      setSubcategoriesByCategory((prev) => ({
         ...prev,
-        [selected.id]: (prev[selected.id] || []).filter(sub => sub.id !== id)
+        [selected.id]: (prev[selected.id] || []).filter((sub) => sub.id !== id),
       }));
     }
   };
@@ -107,13 +121,13 @@ export default function SubCategories({ categories }) {
 
   const saveEditSubcategory = () => {
     if (editSubcategoryName.trim() && selected && editingSubcategoryId) {
-      setSubcategoriesByCategory(prev => ({
+      setSubcategoriesByCategory((prev) => ({
         ...prev,
-        [selected.id]: (prev[selected.id] || []).map(sub => 
-          sub.id === editingSubcategoryId 
+        [selected.id]: (prev[selected.id] || []).map((sub) =>
+          sub.id === editingSubcategoryId
             ? { ...sub, name: editSubcategoryName }
             : sub
-        )
+        ),
       }));
       setEditingSubcategoryId(null);
       setEditSubcategoryName("");
@@ -127,30 +141,31 @@ export default function SubCategories({ categories }) {
 
   // Handle Enter key in edit mode
   const handleEditKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       saveEditSubcategory();
-    } else if (e.key === 'Escape') {
+    } else if (e.key === "Escape") {
       cancelEditSubcategory();
     }
   };
 
   // Get total subcategories count for all categories
   const totalSubcategoriesCount = Object.values(subcategoriesByCategory).reduce(
-    (total, subs) => total + subs.length, 0
+    (total, subs) => total + subs.length,
+    0
   );
 
   return (
     <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-gray-800 mb-2 md:mb-0">
-          Sub Categories 
+          Sub Categories
           {totalSubcategoriesCount > 0 && (
             <span className="text-sm font-normal text-gray-500 ml-2">
               ({totalSubcategoriesCount} total subcategories)
             </span>
           )}
         </h2>
-        
+
         {/* Current Time Display */}
         <div className="flex items-center space-x-2 bg-gray-100 px-4 py-2 rounded-lg">
           <Clock className="w-4 h-4 text-gray-600" />
@@ -183,7 +198,11 @@ export default function SubCategories({ categories }) {
                     {currentSubcategories.length}
                   </span>
                 )}
-                <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${
+                    open ? "rotate-180" : ""
+                  }`}
+                />
               </div>
             </button>
 
@@ -204,7 +223,8 @@ export default function SubCategories({ categories }) {
 
                 <ul className="max-h-48 overflow-y-auto">
                   {filtered.map((category) => {
-                    const categorySubs = subcategoriesByCategory[category.id] || [];
+                    const categorySubs =
+                      subcategoriesByCategory[category.id] || [];
                     return (
                       <li
                         key={category.id}
@@ -215,8 +235,12 @@ export default function SubCategories({ categories }) {
                           <div className="flex items-center space-x-2">
                             <Folder className="w-4 h-4 text-gray-400" />
                             <div>
-                              <div className="font-medium text-gray-800">{category.name}</div>
-                              <div className="text-sm text-gray-500">ID: {category.id} • Created: {category.created}</div>
+                              <div className="font-medium text-gray-800">
+                                {category.name}
+                              </div>
+                              <div className="text-sm text-gray-500">
+                                ID: {category.id} • Created: {category.created}
+                              </div>
                             </div>
                           </div>
                           {categorySubs.length > 0 && (
@@ -230,7 +254,9 @@ export default function SubCategories({ categories }) {
                   })}
 
                   {filtered.length === 0 && (
-                    <li className="p-4 text-gray-500 text-center">No categories found</li>
+                    <li className="p-4 text-gray-500 text-center">
+                      No categories found
+                    </li>
                   )}
                 </ul>
               </div>
@@ -259,7 +285,8 @@ export default function SubCategories({ categories }) {
           </div>
           {selected && searchTerm && (
             <p className="text-sm text-gray-500 mt-1">
-              Showing {filteredSubcategories.length} of {currentSubcategories.length} subcategories
+              Showing {filteredSubcategories.length} of{" "}
+              {currentSubcategories.length} subcategories
             </p>
           )}
         </div>
@@ -276,7 +303,7 @@ export default function SubCategories({ categories }) {
               </span>
             )}
           </h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Category Information */}
             <div className="space-y-4">
@@ -288,11 +315,15 @@ export default function SubCategories({ categories }) {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">ID:</span>
-                    <span className="font-medium bg-blue-100 px-2 py-1 rounded">{selected.id}</span>
+                    <span className="font-medium bg-blue-100 px-2 py-1 rounded">
+                      {selected.id}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">Name:</span>
-                    <span className="font-medium text-blue-600">{selected.name}</span>
+                    <span className="font-medium text-blue-600">
+                      {selected.name}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">Created Date:</span>
@@ -307,7 +338,9 @@ export default function SubCategories({ categories }) {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">Subcategories:</span>
-                    <span className="font-medium text-purple-600">{currentSubcategories.length}</span>
+                    <span className="font-medium text-purple-600">
+                      {currentSubcategories.length}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -315,7 +348,9 @@ export default function SubCategories({ categories }) {
 
             {/* Subcategories Management Section */}
             <div className="bg-white rounded-lg p-4 border border-gray-200">
-              <h4 className="font-medium text-gray-700 mb-3">Add Subcategory to "{selected.name}"</h4>
+              <h4 className="font-medium text-gray-700 mb-3">
+                Add Subcategory to "{selected.name}"
+              </h4>
               <div className="flex flex-col sm:flex-row gap-3 mb-4">
                 <input
                   type="text"
@@ -323,9 +358,11 @@ export default function SubCategories({ categories }) {
                   onChange={(e) => setNewSubcategory(e.target.value)}
                   placeholder="Enter subcategory name"
                   className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  onKeyPress={(e) => e.key === 'Enter' && handleAddSubcategory()}
+                  onKeyPress={(e) =>
+                    e.key === "Enter" && handleAddSubcategory()
+                  }
                 />
-                <button 
+                <button
                   onClick={handleAddSubcategory}
                   disabled={!newSubcategory.trim()}
                   className="bg-green-500 hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg transition-colors whitespace-nowrap flex items-center justify-center space-x-2"
@@ -334,7 +371,7 @@ export default function SubCategories({ categories }) {
                   <span>Add Subcategory</span>
                 </button>
               </div>
-              
+
               {/* Subcategories List */}
               {currentSubcategories.length > 0 ? (
                 <div className="border border-gray-200 rounded-lg overflow-hidden">
@@ -354,14 +391,19 @@ export default function SubCategories({ categories }) {
                   </div>
                   <div className="max-h-48 overflow-y-auto">
                     {filteredSubcategories.map((subcategory) => (
-                      <div key={subcategory.id} className="flex items-center justify-between p-3 border-b border-gray-100 last:border-b-0 hover:bg-gray-50">
+                      <div
+                        key={subcategory.id}
+                        className="flex items-center justify-between p-3 border-b border-gray-100 last:border-b-0 hover:bg-gray-50"
+                      >
                         <div className="flex-1">
                           {editingSubcategoryId === subcategory.id ? (
                             <div className="flex items-center space-x-2">
                               <input
                                 type="text"
                                 value={editSubcategoryName}
-                                onChange={(e) => setEditSubcategoryName(e.target.value)}
+                                onChange={(e) =>
+                                  setEditSubcategoryName(e.target.value)
+                                }
                                 onKeyPress={handleEditKeyPress}
                                 className="flex-1 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 autoFocus
@@ -384,9 +426,12 @@ export default function SubCategories({ categories }) {
                             </div>
                           ) : (
                             <div>
-                              <div className="font-medium text-gray-800">{subcategory.name}</div>
+                              <div className="font-medium text-gray-800">
+                                {subcategory.name}
+                              </div>
                               <div className="text-sm text-gray-500">
-                                Created: {subcategory.created} at {subcategory.createdTime}
+                                Created: {subcategory.created} at{" "}
+                                {subcategory.createdTime}
                               </div>
                             </div>
                           )}
@@ -394,13 +439,17 @@ export default function SubCategories({ categories }) {
                         {editingSubcategoryId !== subcategory.id && (
                           <div className="flex space-x-1">
                             <button
-                              onClick={() => startEditingSubcategory(subcategory)}
+                              onClick={() =>
+                                startEditingSubcategory(subcategory)
+                              }
                               className="text-blue-500 hover:text-blue-700 p-1"
                             >
                               <Edit2 className="w-4 h-4" />
                             </button>
                             <button
-                              onClick={() => handleDeleteSubcategory(subcategory.id)}
+                              onClick={() =>
+                                handleDeleteSubcategory(subcategory.id)
+                              }
                               className="text-red-500 hover:text-red-700 p-1"
                             >
                               <Trash2 className="w-4 h-4" />
@@ -427,7 +476,9 @@ export default function SubCategories({ categories }) {
                 <div className="text-center py-6 text-gray-400 border-2 border-dashed border-gray-200 rounded-lg">
                   <Folder className="w-12 h-12 mx-auto mb-2 opacity-50" />
                   <p>No subcategories added yet</p>
-                  <p className="text-sm mt-1">Add your first subcategory above</p>
+                  <p className="text-sm mt-1">
+                    Add your first subcategory above
+                  </p>
                 </div>
               )}
             </div>
@@ -436,8 +487,13 @@ export default function SubCategories({ categories }) {
       ) : (
         <div className="text-center py-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
           <Folder className="w-16 h-16 mx-auto mb-4 text-gray-400" />
-          <h3 className="text-lg font-medium text-gray-600 mb-2">No Category Selected</h3>
-          <p className="text-gray-500">Please select a category from the dropdown above to view and manage its subcategories.</p>
+          <h3 className="text-lg font-medium text-gray-600 mb-2">
+            No Category Selected
+          </h3>
+          <p className="text-gray-500">
+            Please select a category from the dropdown above to view and manage
+            its subcategories.
+          </p>
         </div>
       )}
     </section>

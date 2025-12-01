@@ -1,7 +1,12 @@
 import React from "react";
-import { X, LayoutGrid, FolderTree, LayoutDashboard  } from "lucide-react";
+import { X, LayoutGrid, FolderTree, LayoutDashboard } from "lucide-react";
 
-export default function Sidebar({ sidebarOpen, setSidebarOpen, activeSection, setActiveSection }) {
+export default function Sidebar({
+  sidebarOpen,
+  setSidebarOpen,
+  activeSection,
+  setActiveSection,
+}) {
   const menuItems = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
     { id: "categories", label: "Categories", icon: LayoutGrid },
@@ -12,12 +17,12 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, activeSection, se
     <>
       {/* Mobile Overlay */}
       {sidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}
-      
+
       <aside
         className={`fixed top-0 left-0 h-full w-64 bg-gray-900 text-white p-6 pt-20 z-40 transition-transform duration-300
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
@@ -36,8 +41,8 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, activeSection, se
                   }
                 }}
                 className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors ${
-                  activeSection === item.id 
-                    ? "bg-blue-600 text-white" 
+                  activeSection === item.id
+                    ? "bg-blue-600 text-white"
                     : "text-gray-300 hover:bg-gray-800 hover:text-white"
                 }`}
               >

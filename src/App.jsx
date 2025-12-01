@@ -20,41 +20,41 @@ export default function App() {
     const category = {
       id: categories.length + 1,
       name: newCategory,
-      created: new Date().toISOString().split('T')[0]
+      created: new Date().toISOString().split("T")[0],
     };
     setCategories([...categories, category]);
   };
 
   const editCategory = (id, newName) => {
-    setCategories(categories.map(cat => 
-      cat.id === id ? { ...cat, name: newName } : cat
-    ));
+    setCategories(
+      categories.map((cat) => (cat.id === id ? { ...cat, name: newName } : cat))
+    );
   };
 
   const deleteCategory = (id) => {
-    setCategories(categories.filter(cat => cat.id !== id));
+    setCategories(categories.filter((cat) => cat.id !== id));
   };
 
   const renderContent = () => {
     switch (activeSection) {
       case "categories":
         return (
-          <Categories 
-            categories={categories} 
-            onAddCategory={addCategory} 
+          <Categories
+            categories={categories}
+            onAddCategory={addCategory}
             onEditCategory={editCategory}
-            onDeleteCategory={deleteCategory} 
+            onDeleteCategory={deleteCategory}
           />
         );
       case "subcategories":
         return <SubCategories categories={categories} />;
       default:
         return (
-          <Categories 
-            categories={categories} 
-            onAddCategory={addCategory} 
+          <Categories
+            categories={categories}
+            onAddCategory={addCategory}
             onEditCategory={editCategory}
-            onDeleteCategory={deleteCategory} 
+            onDeleteCategory={deleteCategory}
           />
         );
     }
@@ -63,21 +63,23 @@ export default function App() {
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden mt-16">
       {/* Sidebar */}
-      <Sidebar 
-        sidebarOpen={sidebarOpen} 
+      <Sidebar
+        sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
         activeSection={activeSection}
         setActiveSection={setActiveSection}
       />
 
       {/* Main content */}
-      <div className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${sidebarOpen ? 'md:ml-64' : ''}`}>
+      <div
+        className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${
+          sidebarOpen ? "md:ml-64" : ""
+        }`}
+      >
         <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        
+
         <main className="flex-1 pt-16 p-4 md:p-6 overflow-y-auto">
-          <div className="max-w-7xl mx-auto">
-            {renderContent()}
-          </div>
+          <div className="max-w-7xl mx-auto">{renderContent()}</div>
         </main>
       </div>
     </div>
