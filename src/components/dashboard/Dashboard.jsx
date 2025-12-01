@@ -485,31 +485,52 @@
 
 // export default Dashboard;
 
-
-import React from 'react';
-import { 
-  Package, 
-  Users, 
-  TrendingUp, 
+import React from "react";
+import {
+  Package,
+  Users,
+  TrendingUp,
   AlertCircle,
   Bell,
   BarChart3,
-  PieChart
-} from 'lucide-react';
+  PieChart,
+} from "lucide-react";
 
 const Dashboard = () => {
   const stats = [
-    { label: 'Total Assets', value: '1,234', icon: Package, color: 'bg-blue-500' },
-    { label: 'Total Issued Assets', value: '567', icon: Users, color: 'bg-green-500' },
-    { label: 'Assets in Stock', value: '432', icon: TrendingUp, color: 'bg-purple-500' },
-    { label: 'Damaged Assets', value: '89', icon: AlertCircle, color: 'bg-red-500' }
+    {
+      label: "Total Assets",
+      value: "1,234",
+      icon: Package,
+      color: "bg-blue-500",
+    },
+    {
+      label: "Total Issued Assets",
+      value: "567",
+      icon: Users,
+      color: "bg-green-500",
+    },
+    {
+      label: "Assets in Stock",
+      value: "432",
+      icon: TrendingUp,
+      color: "bg-purple-500",
+    },
+    {
+      label: "Damaged Assets",
+      value: "89",
+      icon: AlertCircle,
+      color: "bg-red-500",
+    },
   ];
 
   return (
     <div className="p-4 md:p-6 space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Dashboard</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
+          Dashboard
+        </h1>
         <div className="relative">
           <Bell className="w-6 h-6 text-gray-600 cursor-pointer" />
           <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
@@ -521,14 +542,16 @@ const Dashboard = () => {
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow"
             >
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">{stat.label}</p>
-                  <p className="text-2xl md:text-3xl font-bold mt-2">{stat.value}</p>
+                  <p className="text-2xl md:text-3xl font-bold mt-2">
+                    {stat.value}
+                  </p>
                 </div>
                 <div className={`${stat.color} p-3 rounded-lg`}>
                   <Icon className="w-6 h-6 text-white" />
@@ -565,8 +588,8 @@ const Dashboard = () => {
             <div className="text-center">
               <div className="w-full h-40 flex items-end justify-center space-x-4">
                 {[60, 40, 80, 60, 100, 80, 40].map((height, index) => (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className="w-8 bg-blue-500 rounded-t"
                     style={{ height: `${height}%` }}
                   ></div>
@@ -586,18 +609,18 @@ const Dashboard = () => {
         </div>
         <div className="space-y-3">
           {[
-            { text: '5 laptops warranty expires next month', type: 'warning' },
-            { text: 'Mouse stock is low (less than 10)', type: 'error' },
-            { text: '3 assets need maintenance', type: 'info' }
+            { text: "5 laptops warranty expires next month", type: "warning" },
+            { text: "Mouse stock is low (less than 10)", type: "error" },
+            { text: "3 assets need maintenance", type: "info" },
           ].map((alert, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className={`p-3 rounded-lg border-l-4 ${
-                alert.type === 'error' 
-                  ? 'bg-red-50 border-red-500' 
-                  : alert.type === 'warning'
-                  ? 'bg-yellow-50 border-yellow-500'
-                  : 'bg-blue-50 border-blue-500'
+                alert.type === "error"
+                  ? "bg-red-50 border-red-500"
+                  : alert.type === "warning"
+                  ? "bg-yellow-50 border-yellow-500"
+                  : "bg-blue-50 border-blue-500"
               }`}
             >
               <p className="text-sm">{alert.text}</p>
@@ -608,7 +631,9 @@ const Dashboard = () => {
 
       {/* Warranty Section */}
       <div className="bg-white rounded-xl shadow-md p-6">
-        <h2 className="text-lg font-semibold mb-4">Upcoming Warranty Expiry (Next 30 Days)</h2>
+        <h2 className="text-lg font-semibold mb-4">
+          Upcoming Warranty Expiry (Next 30 Days)
+        </h2>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -624,7 +649,9 @@ const Dashboard = () => {
                 <td className="py-3">Dell Laptop XPS 13</td>
                 <td className="py-3">Laptop</td>
                 <td className="py-3">2024-01-15</td>
-                <td className="py-3"><span className="text-red-600 font-semibold">15</span></td>
+                <td className="py-3">
+                  <span className="text-red-600 font-semibold">15</span>
+                </td>
               </tr>
             </tbody>
           </table>

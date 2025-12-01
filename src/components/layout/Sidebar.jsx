@@ -65,29 +65,29 @@
 //   );
 // }
 
-import React, { useState } from 'react';
-import { 
-  Home, 
-  Package, 
-  Users, 
-  BarChart3, 
-  Settings, 
+import React, { useState } from "react";
+import {
+  Home,
+  Package,
+  Users,
+  BarChart3,
+  Settings,
   LogOut,
   Menu,
-  X
-} from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+  X,
+} from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const location = useLocation();
 
   const navItems = [
-    { path: '/dashboard', label: 'Dashboard', icon: Home },
-    { path: '/assets', label: 'Assets', icon: Package },
-    { path: '/employees', label: 'Employees', icon: Users },
-    { path: '/reports', label: 'Reports', icon: BarChart3 },
-    { path: '/settings', label: 'Settings', icon: Settings }
+    { path: "/dashboard", label: "Dashboard", icon: Home },
+    { path: "/assets", label: "Assets", icon: Package },
+    { path: "/employees", label: "Employees", icon: Users },
+    { path: "/reports", label: "Reports", icon: BarChart3 },
+    { path: "/settings", label: "Settings", icon: Settings },
   ];
 
   return (
@@ -109,11 +109,13 @@ const Sidebar = () => {
       )}
 
       {/* Sidebar */}
-      <aside className={`
-        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+      <aside
+        className={`
+        ${isOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-40
         w-64 bg-gray-900 text-white transform transition-transform duration-200 ease-in-out
-      `}>
+      `}
+      >
         {/* Logo */}
         <div className="p-6 border-b border-gray-800">
           <h1 className="text-xl font-bold">Inventory Pro</h1>
@@ -122,7 +124,7 @@ const Sidebar = () => {
 
         {/* Navigation */}
         <nav className="p-4 space-y-2">
-          {navItems.map(item => {
+          {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
             return (
@@ -132,9 +134,10 @@ const Sidebar = () => {
                 onClick={() => window.innerWidth < 1024 && setIsOpen(false)}
                 className={`
                   flex items-center px-4 py-3 rounded-lg transition-colors
-                  ${isActive 
-                    ? 'bg-blue-600 text-white' 
-                    : 'hover:bg-gray-800 text-gray-300'
+                  ${
+                    isActive
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-800 text-gray-300"
                   }
                 `}
               >
