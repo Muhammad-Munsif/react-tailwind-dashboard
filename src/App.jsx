@@ -86,13 +86,17 @@
 //   );
 // }
 
-
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Dashboard from './components/dashboard/Dashboard';
-import AssetList from './components/assets/AssetList';
-import Login from './components/auth/Login';
-import Sidebar from './components/layout/Sidebar';
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Dashboard from "./components/dashboard/Dashboard";
+import AssetList from "./components/assets/AssetList";
+import Login from "./components/auth/Login";
+import Sidebar from "./components/layout/Sidebar";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -110,9 +114,30 @@ const App = () => {
             <Route path="/" element={<Navigate to="/dashboard" />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/assets" element={<AssetList />} />
-            <Route path="/employees" element={<div className="p-6"><h1>Employees</h1></div>} />
-            <Route path="/reports" element={<div className="p-6"><h1>Reports</h1></div>} />
-            <Route path="/settings" element={<div className="p-6"><h1>Settings</h1></div>} />
+            <Route
+              path="/employees"
+              element={
+                <div className="p-6">
+                  <h1>Employees</h1>
+                </div>
+              }
+            />
+            <Route
+              path="/reports"
+              element={
+                <div className="p-6">
+                  <h1>Reports</h1>
+                </div>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <div className="p-6">
+                  <h1>Settings</h1>
+                </div>
+              }
+            />
           </Routes>
         </div>
       </div>
