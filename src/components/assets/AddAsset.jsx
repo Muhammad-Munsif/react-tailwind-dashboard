@@ -1,27 +1,36 @@
-import React, { useState } from 'react';
-import { Save, X, Plus } from 'lucide-react';
+import React, { useState } from "react";
+import { Save, X, Plus } from "lucide-react";
 
 const AddAsset = ({ onClose }) => {
   const [formData, setFormData] = useState({
-    itemName: '',
-    category: '',
-    brand: '',
-    model: '',
-    serialNumber: '',
-    purchaseDate: '',
-    supplier: '',
-    warrantyStart: '',
-    warrantyEnd: '',
-    price: '',
-    status: 'Available'
+    itemName: "",
+    category: "",
+    brand: "",
+    model: "",
+    serialNumber: "",
+    purchaseDate: "",
+    supplier: "",
+    warrantyStart: "",
+    warrantyEnd: "",
+    price: "",
+    status: "Available",
   });
 
-  const categories = ['Laptop', 'Desktop', 'Monitor', 'HDD', 'SSD', 'RAM', 'Keyboard', 'Mouse'];
-  const statuses = ['Available', 'Issued', 'Damaged', 'Scrapped'];
+  const categories = [
+    "Laptop",
+    "Desktop",
+    "Monitor",
+    "HDD",
+    "SSD",
+    "RAM",
+    "Keyboard",
+    "Mouse",
+  ];
+  const statuses = ["Available", "Issued", "Damaged", "Scrapped"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Asset added:', formData);
+    console.log("Asset added:", formData);
     // API call here
     onClose();
   };
@@ -29,7 +38,7 @@ const AddAsset = ({ onClose }) => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -39,7 +48,10 @@ const AddAsset = ({ onClose }) => {
         <div className="sticky top-0 bg-white border-b p-6">
           <div className="flex justify-between items-center">
             <h2 className="text-2xl font-bold">Add New Asset</h2>
-            <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg">
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-gray-100 rounded-lg"
+            >
               <X className="w-5 h-5" />
             </button>
           </div>
@@ -76,8 +88,10 @@ const AddAsset = ({ onClose }) => {
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">Select category</option>
-                {categories.map(cat => (
-                  <option key={cat} value={cat}>{cat}</option>
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
                 ))}
               </select>
             </div>
@@ -214,8 +228,10 @@ const AddAsset = ({ onClose }) => {
                 required
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
-                {statuses.map(status => (
-                  <option key={status} value={status}>{status}</option>
+                {statuses.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
                 ))}
               </select>
             </div>
