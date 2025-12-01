@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Edit2, Trash2, Check, X, Plus } from "lucide-react";
 import Dashboard from "./Dashboard";
+import AssetManagement from "./AssetManagement";
 
 export default function Categories({ categories, onAddCategory, onEditCategory, onDeleteCategory }) {
   const [newCategory, setNewCategory] = useState("");
@@ -168,6 +169,7 @@ export default function Categories({ categories, onAddCategory, onEditCategory, 
           </div>
         </div>
       )}
+      <AssetManagement/>
     </>
   );
 }
