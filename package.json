@@ -1,7 +1,7 @@
 {
   "name": "react-tailwind-dashboard",
   "version": "1.0.0",
-   "type": "module",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -13,7 +13,8 @@
     "react": "^18.2.0",
     "react-chartjs-2": "^5.3.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^7.9.6"
+    "react-router-dom": "^7.9.6",
+    "react-toastify": "^11.0.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",

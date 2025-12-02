@@ -8,7 +8,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen }) {
       <button
         aria-label="Toggle sidebar"
         className="p-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors lg:hidden"
-        onClick={() => setSidebarOpen((s) => !s)}
+        onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         <Menu className="w-5 h-5" />
       </button>
