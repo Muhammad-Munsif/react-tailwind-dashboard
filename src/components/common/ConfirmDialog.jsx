@@ -1,6 +1,6 @@
 // src/components/common/ConfirmDialog.jsx
-import React from 'react';
-import { AlertTriangle, CheckCircle, XCircle, Info, X } from 'lucide-react';
+import React from "react";
+import { AlertTriangle, CheckCircle, XCircle, Info, X } from "lucide-react";
 
 const ConfirmDialog = ({
   isOpen,
@@ -11,7 +11,7 @@ const ConfirmDialog = ({
   confirmText = "Confirm",
   cancelText = "Cancel",
   variant = "warning",
-  isLoading = false
+  isLoading = false,
 }) => {
   if (!isOpen) return null;
 
@@ -39,7 +39,7 @@ const ConfirmDialog = ({
       iconColor: "text-blue-500",
       bgColor: "bg-blue-100",
       buttonColor: "bg-blue-600 hover:bg-blue-700",
-    }
+    },
   };
 
   const { icon: Icon, iconColor, bgColor, buttonColor } = variants[variant];
@@ -50,8 +50,11 @@ const ConfirmDialog = ({
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
-      <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity" onClick={onClose} />
-      
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
+        onClick={onClose}
+      />
+
       <div className="flex min-h-full items-center justify-center p-4">
         <div className="relative bg-white rounded-xl shadow-xl w-full max-w-md animate-fade-in">
           <div className="p-6">
@@ -59,21 +62,21 @@ const ConfirmDialog = ({
               <div className={`flex-shrink-0 p-3 ${bgColor} rounded-lg`}>
                 <Icon className={`w-6 h-6 ${iconColor}`} />
               </div>
-              
+
               <div className="ml-4 flex-1">
                 {title && (
                   <h3 className="text-lg font-semibold text-gray-900">
                     {title}
                   </h3>
                 )}
-                
+
                 {message && (
                   <div className="mt-2">
                     <p className="text-sm text-gray-600">{message}</p>
                   </div>
                 )}
               </div>
-              
+
               <button
                 onClick={onClose}
                 className="ml-3 text-gray-400 hover:text-gray-500 transition-colors"
@@ -81,7 +84,7 @@ const ConfirmDialog = ({
                 <X className="w-5 h-5" />
               </button>
             </div>
-            
+
             <div className="mt-6 flex justify-end space-x-3">
               <button
                 type="button"
@@ -91,7 +94,7 @@ const ConfirmDialog = ({
               >
                 {cancelText}
               </button>
-              
+
               <button
                 type="button"
                 onClick={handleConfirm}
