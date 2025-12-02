@@ -176,7 +176,7 @@ function App() {
 
   return (
     <Router>
-      <AuthProvider>
+      {/* <AuthProvider> */}
         <div className="App">
           <Routes>
             <Route path="/login" element={<Login />} />
@@ -197,7 +197,7 @@ function App() {
             )}
           </Routes>
         </div>
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </Router>
   );
 }
