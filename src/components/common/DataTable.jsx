@@ -1,25 +1,30 @@
 // src/components/common/DataTable.jsx
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
-import Pagination from './Pagination';
+import React, { useState } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react";
+import Pagination from "./Pagination";
 
-const DataTable = ({ 
-  data, 
-  columns, 
+const DataTable = ({
+  data,
+  columns,
   itemsPerPage = 10,
   searchable = false,
   selectable = false,
   onRowClick,
-  className = ''
+  className = "",
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedRows, setSelectedRows] = useState([]);
 
   // Filter data based on search term
-  const filteredData = searchable 
-    ? data.filter(item => 
-        columns.some(col => 
+  const filteredData = searchable
+    ? data.filter((item) =>
+        columns.some((col) =>
           String(item[col.key]).toLowerCase().includes(searchTerm.toLowerCase())
         )
       )
@@ -28,26 +33,29 @@ const DataTable = ({
   // Pagination logic
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedData = filteredData.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      setSelectedRows(paginatedData.map(item => item.id));
+      setSelectedRows(paginatedData.map((item) => item.id));
     } else {
       setSelectedRows([]);
     }
   };
 
   const handleRowSelect = (id) => {
-    setSelectedRows(prev => 
-      prev.includes(id) 
-        ? prev.filter(rowId => rowId !== id)
-        : [...prev, id]
+    setSelectedRows((prev) =>
+      prev.includes(id) ? prev.filter((rowId) => rowId !== id) : [...prev, id]
     );
   };
 
   return (
-    <div className={`bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden ${className}`}>
+    <div
+      className={`bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden ${className}`}
+    >
       {searchable && (
         <div className="p-4 border-b">
           <input
@@ -68,7 +76,10 @@ const DataTable = ({
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   <input
                     type="checkbox"
-                    checked={selectedRows.length === paginatedData.length && paginatedData.length > 0}
+                    checked={
+                      selectedRows.length === paginatedData.length &&
+                      paginatedData.length > 0
+                    }
                     onChange={handleSelectAll}
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   />
@@ -86,10 +97,12 @@ const DataTable = ({
           </thead>
           <tbody className="divide-y divide-gray-200">
             {paginatedData.map((item, rowIndex) => (
-              <tr 
+              <tr
                 key={item.id || rowIndex}
                 onClick={() => onRowClick && onRowClick(item)}
-                className={`hover:bg-gray-50 ${onRowClick ? 'cursor-pointer' : ''}`}
+                className={`hover:bg-gray-50 ${
+                  onRowClick ? "cursor-pointer" : ""
+                }`}
               >
                 {selectable && (
                   <td className="px-6 py-4 whitespace-nowrap">
