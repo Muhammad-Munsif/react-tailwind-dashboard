@@ -47,7 +47,7 @@ const AddAsset = ({ onClose }) => {
       <div className="bg-white rounded-xl shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
         <div className="sticky top-0 bg-white border-b p-6">
           <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold">Add New Asset</h2>
+            <h2 className="text-2xl font-bold bg-red-500">Add New Asset</h2>
             <button
               onClick={onClose}
               className="p-2 hover:bg-gray-100 rounded-lg"

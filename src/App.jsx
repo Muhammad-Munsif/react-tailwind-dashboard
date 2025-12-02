@@ -104,6 +104,8 @@ import Navbar from "./components/layout/Navbar";
 import Reports from './components/Reports';
 import AddEmployee from './components/AddEmployee';
 import CategoryManagement from "./components/CategoryManagemant";
+import Employees from "./components/Employee";
+import AddAsset from "./components/assets/AddAsset";
 // import AssetManagement from "./components/AssetManagemant";
 
 const App = () => {
@@ -132,10 +134,11 @@ const App = () => {
                 <Route path="/" element={<Navigate to="/dashboard" />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/category" element={<CategoryManagement />} />
-                {/* <Route path="/asset" element={<AssetManagement />} /> */}
+                <Route path="/Employee" element={<Employees />} />
                 <Route path="/assets" element={<AssetList />} />
                 <Route path="/employees" element={<AddEmployee />} />
                 <Route path="/reports" element={<Reports />} />
+                {/* <Route path="/addasset" element={<AddAsset />} /> */}
                 <Route
                   path="/settings"
                   element={
