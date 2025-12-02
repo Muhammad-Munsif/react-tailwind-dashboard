@@ -1,6 +1,12 @@
 // src/components/common/Pagination.jsx
-import React from 'react';
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, MoreHorizontal } from 'lucide-react';
+import React from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+  MoreHorizontal,
+} from "lucide-react";
 
 const Pagination = ({
   currentPage,
@@ -10,7 +16,7 @@ const Pagination = ({
   itemsPerPage,
   showPageNumbers = true,
   showInfo = true,
-  className = ""
+  className = "",
 }) => {
   if (totalPages <= 1) return null;
 
@@ -38,7 +44,7 @@ const Pagination = ({
         if (i - l === 2) {
           rangeWithDots.push(l + 1);
         } else if (i - l !== 1) {
-          rangeWithDots.push('...');
+          rangeWithDots.push("...");
         }
       }
       rangeWithDots.push(i);
@@ -51,15 +57,17 @@ const Pagination = ({
   const pageNumbers = getPageNumbers();
 
   return (
-    <div className={`flex flex-col md:flex-row md:items-center justify-between gap-4 ${className}`}>
+    <div
+      className={`flex flex-col md:flex-row md:items-center justify-between gap-4 ${className}`}
+    >
       {showInfo && (
         <div className="text-sm text-gray-600">
-          Showing <span className="font-medium">{startItem}</span> to{' '}
-          <span className="font-medium">{endItem}</span> of{' '}
+          Showing <span className="font-medium">{startItem}</span> to{" "}
+          <span className="font-medium">{endItem}</span> of{" "}
           <span className="font-medium">{totalItems}</span> results
         </div>
       )}
-      
+
       <div className="flex items-center space-x-2">
         <nav className="inline-flex items-center space-x-2">
           {/* First page */}
@@ -71,7 +79,7 @@ const Pagination = ({
           >
             <ChevronsLeft className="w-4 h-4" />
           </button>
-          
+
           {/* Previous page */}
           <button
             onClick={() => onPageChange(currentPage - 1)}
@@ -85,8 +93,8 @@ const Pagination = ({
           {/* Page numbers */}
           {showPageNumbers && (
             <div className="flex items-center space-x-1">
-              {pageNumbers.map((pageNumber, index) => (
-                pageNumber === '...' ? (
+              {pageNumbers.map((pageNumber, index) =>
+                pageNumber === "..." ? (
                   <span
                     key={`dots-${index}`}
                     className="px-3 py-2 text-gray-400"
@@ -99,14 +107,14 @@ const Pagination = ({
                     onClick={() => onPageChange(pageNumber)}
                     className={`px-3 py-2 min-w-[40px] rounded-lg border transition-colors ${
                       currentPage === pageNumber
-                        ? 'bg-blue-600 border-blue-600 text-white'
-                        : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                        ? "bg-blue-600 border-blue-600 text-white"
+                        : "border-gray-300 text-gray-700 hover:bg-gray-50"
                     }`}
                   >
                     {pageNumber}
                   </button>
                 )
-              ))}
+              )}
             </div>
           )}
 
@@ -119,7 +127,7 @@ const Pagination = ({
           >
             <ChevronRight className="w-4 h-4" />
           </button>
-          
+
           {/* Last page */}
           <button
             onClick={() => onPageChange(totalPages)}
