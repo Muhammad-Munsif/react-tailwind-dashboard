@@ -1,53 +1,73 @@
 // src/components/assets/AssetForm.jsx
-import React, { useState } from 'react';
-import { 
-  Save, 
-  X, 
-  Upload,
-  Camera,
-  QrCode
-} from 'lucide-react';
+import React, { useState } from "react";
+import { Save, X, Upload, Camera, QrCode } from "lucide-react";
 
 const AssetForm = ({ asset, onClose, onSave }) => {
   const [formData, setFormData] = useState({
-    name: asset?.name || '',
-    category: asset?.category || '',
-    brand: asset?.brand || '',
-    model: asset?.model || '',
-    serialNumber: asset?.serial || '',
-    purchaseDate: asset?.purchaseDate || '',
-    supplier: asset?.supplier || '',
-    warrantyStart: asset?.warrantyStart || '',
-    warrantyEnd: asset?.warrantyEnd || '',
-    price: asset?.price || '',
-    status: asset?.status || 'Available',
-    notes: asset?.notes || ''
+    name: asset?.name || "",
+    category: asset?.category || "",
+    brand: asset?.brand || "",
+    model: asset?.model || "",
+    serialNumber: asset?.serial || "",
+    purchaseDate: asset?.purchaseDate || "",
+    supplier: asset?.supplier || "",
+    warrantyStart: asset?.warrantyStart || "",
+    warrantyEnd: asset?.warrantyEnd || "",
+    price: asset?.price || "",
+    status: asset?.status || "Available",
+    notes: asset?.notes || "",
   });
 
   const categories = [
-    'Laptop', 'Desktop', 'Monitor', 'HDD', 'SSD', 'RAM',
-    'Keyboard', 'Mouse', 'Server', 'Networking Device',
-    'Printer', 'Scanner', 'Projector', 'UPS'
+    "Laptop",
+    "Desktop",
+    "Monitor",
+    "HDD",
+    "SSD",
+    "RAM",
+    "Keyboard",
+    "Mouse",
+    "Server",
+    "Networking Device",
+    "Printer",
+    "Scanner",
+    "Projector",
+    "UPS",
   ];
 
   const brands = [
-    'Dell', 'HP', 'Lenovo', 'Apple', 'Asus', 'Acer',
-    'Cisco', 'TP-Link', 'Logitech', 'Microsoft', 'Samsung'
+    "Dell",
+    "HP",
+    "Lenovo",
+    "Apple",
+    "Asus",
+    "Acer",
+    "Cisco",
+    "TP-Link",
+    "Logitech",
+    "Microsoft",
+    "Samsung",
   ];
 
-  const statuses = ['Available', 'Issued', 'Damaged', 'Scrapped', 'Under Maintenance'];
+  const statuses = [
+    "Available",
+    "Issued",
+    "Damaged",
+    "Scrapped",
+    "Under Maintenance",
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission
-    console.log('Form data:', formData);
+    console.log("Form data:", formData);
     onSave?.(formData);
     onClose?.();
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -55,8 +75,10 @@ const AssetForm = ({ asset, onClose, onSave }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Basic Information */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900">Basic Information</h3>
-          
+          <h3 className="text-lg font-semibold text-gray-900">
+            Basic Information
+          </h3>
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Item Name *
@@ -84,8 +106,10 @@ const AssetForm = ({ asset, onClose, onSave }) => {
               required
             >
               <option value="">Select Category</option>
-              {categories.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
               ))}
             </select>
           </div>
@@ -102,8 +126,10 @@ const AssetForm = ({ asset, onClose, onSave }) => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="">Select Brand</option>
-                {brands.map(brand => (
-                  <option key={brand} value={brand}>{brand}</option>
+                {brands.map((brand) => (
+                  <option key={brand} value={brand}>
+                    {brand}
+                  </option>
                 ))}
               </select>
             </div>
@@ -157,8 +183,10 @@ const AssetForm = ({ asset, onClose, onSave }) => {
 
         {/* Purchase & Warranty */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900">Purchase & Warranty</h3>
-          
+          <h3 className="text-lg font-semibold text-gray-900">
+            Purchase & Warranty
+          </h3>
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -247,8 +275,10 @@ const AssetForm = ({ asset, onClose, onSave }) => {
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
             >
-              {statuses.map(status => (
-                <option key={status} value={status}>{status}</option>
+              {statuses.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
               ))}
             </select>
           </div>
@@ -271,7 +301,9 @@ const AssetForm = ({ asset, onClose, onSave }) => {
 
       {/* Attachments */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">Attachments</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-3">
+          Attachments
+        </h3>
         <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
           <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
           <p className="text-sm text-gray-600 mb-2">
@@ -280,12 +312,7 @@ const AssetForm = ({ asset, onClose, onSave }) => {
           <p className="text-xs text-gray-500">
             Upload invoice, warranty card, or photos (Max 10MB per file)
           </p>
-          <input
-            type="file"
-            className="hidden"
-            id="file-upload"
-            multiple
-          />
+          <input type="file" className="hidden" id="file-upload" multiple />
           <label
             htmlFor="file-upload"
             className="inline-block mt-3 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg cursor-pointer"
@@ -310,7 +337,7 @@ const AssetForm = ({ asset, onClose, onSave }) => {
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center"
         >
           <Save className="w-4 h-4 mr-2" />
-          {asset ? 'Update Asset' : 'Save Asset'}
+          {asset ? "Update Asset" : "Save Asset"}
         </button>
       </div>
     </form>
