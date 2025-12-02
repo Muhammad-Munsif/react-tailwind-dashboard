@@ -1,6 +1,13 @@
 // src/components/common/EmptyState.jsx
-import React from 'react';
-import { Package, Search, AlertCircle, Plus, RefreshCw, icon } from 'lucide-react';
+import React from "react";
+import {
+  Package,
+  Search,
+  AlertCircle,
+  Plus,
+  RefreshCw,
+  icon,
+} from "lucide-react";
 
 const EmptyState = ({
   title,
@@ -10,46 +17,44 @@ const EmptyState = ({
   actionLabel,
   secondaryAction,
   secondaryActionLabel,
-  className = ""
+  className = "",
 }) => {
   const icons = {
     package: Package,
     search: Search,
     alert: AlertCircle,
     add: Plus,
-    refresh: RefreshCw
+    refresh: RefreshCw,
   };
 
   const IconComponent = icons[icon] || Package;
 
   return (
-    <div className={`flex flex-col items-center justify-center p-8 text-center ${className}`}>
+    <div
+      className={`flex flex-col items-center justify-center p-8 text-center ${className}`}
+    >
       <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
         <IconComponent className="w-8 h-8 text-gray-400" />
       </div>
-      
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-        {title}
-      </h3>
-      
+
+      <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
+
       {description && (
-        <p className="text-gray-600 max-w-md mb-6">
-          {description}
-        </p>
+        <p className="text-gray-600 max-w-md mb-6">{description}</p>
       )}
-      
+
       <div className="flex flex-col sm:flex-row gap-3">
         {action && actionLabel && (
           <button
             onClick={action}
             className="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
-            {icon === 'add' && <Plus className="w-4 h-4 mr-2" />}
-            {icon === 'refresh' && <RefreshCw className="w-4 h-4 mr-2" />}
+            {icon === "add" && <Plus className="w-4 h-4 mr-2" />}
+            {icon === "refresh" && <RefreshCw className="w-4 h-4 mr-2" />}
             {actionLabel}
           </button>
         )}
-        
+
         {secondaryAction && secondaryActionLabel && (
           <button
             onClick={secondaryAction}
@@ -63,10 +68,10 @@ const EmptyState = ({
   );
 };
 
-export const EmptyTableState = ({ 
-  title = "No data found", 
+export const EmptyTableState = ({
+  title = "No data found",
   description = "There are no records to display",
-  searchQuery = ""
+  searchQuery = "",
 }) => {
   if (searchQuery) {
     return (
@@ -93,19 +98,18 @@ export const EmptyTableState = ({
 export const EmptySearchResults = ({ searchTerm }) => (
   <div className="py-12 text-center">
     <Search className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-    <h3 className="text-lg font-medium text-gray-900 mb-2">
-      No results found
-    </h3>
+    <h3 className="text-lg font-medium text-gray-900 mb-2">No results found</h3>
     <p className="text-gray-600">
-      We couldn't find any results for "{searchTerm}". Try adjusting your search.
+      We couldn't find any results for "{searchTerm}". Try adjusting your
+      search.
     </p>
   </div>
 );
 
-export const ErrorState = ({ 
-  title = "Something went wrong", 
+export const ErrorState = ({
+  title = "Something went wrong",
   description = "We encountered an error while loading the data.",
-  retryAction 
+  retryAction,
 }) => (
   <EmptyState
     title={title}
