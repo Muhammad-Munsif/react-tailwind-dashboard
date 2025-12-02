@@ -86,6 +86,9 @@
 //   );
 // }
 
+
+
+// App.js
 import React, { useState } from "react";
 import {
   BrowserRouter as Router,
@@ -97,9 +100,15 @@ import Dashboard from "./components/dashboard/Dashboard";
 import AssetList from "./components/assets/AssetList";
 import Login from "./components/auth/Login";
 import Sidebar from "./components/layout/Sidebar";
+import Navbar from "./components/layout/Navbar";
+import Reports from './components/Reports';
+import AddEmployee from './components/AddEmployee';
+import CategoryManagement from "./components/CategoryManagemant";
+// import AssetManagement from "./components/AssetManagemant";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   if (!isAuthenticated) {
     return <Login onLogin={() => setIsAuthenticated(true)} />;
@@ -108,37 +117,36 @@ const App = () => {
   return (
     <Router>
       <div className="flex min-h-screen bg-gray-50">
-        <Sidebar />
-        <div className="flex-1 overflow-x-hidden">
-          <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/assets" element={<AssetList />} />
-            <Route
-              path="/employees"
-              element={
-                <div className="p-6">
-                  <h1>Employees</h1>
-                </div>
-              }
-            />
-            <Route
-              path="/reports"
-              element={
-                <div className="p-6">
-                  <h1>Reports</h1>
-                </div>
-              }
-            />
-            <Route
-              path="/settings"
-              element={
-                <div className="p-6">
-                  <h1>Settings</h1>
-                </div>
-              }
-            />
-          </Routes>
+        {/* Fixed Sidebar */}
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col transition-all duration-300 lg:ml-64">
+          {/* Fixed Navbar */}
+          <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+          
+          {/* Scrollable Content */}
+          <main className="flex-1 overflow-y-auto pt-16">
+            <div className="p-4 md:p-6">
+              <Routes>
+                <Route path="/" element={<Navigate to="/dashboard" />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/category" element={<CategoryManagement />} />
+                {/* <Route path="/asset" element={<AssetManagement />} /> */}
+                <Route path="/assets" element={<AssetList />} />
+                <Route path="/employees" element={<AddEmployee />} />
+                <Route path="/reports" element={<Reports />} />
+                <Route
+                  path="/settings"
+                  element={
+                    <div className="p-6">
+                      <h1 className="text-2xl font-bold">Settings</h1>
+                    </div>
+                  }
+                />
+              </Routes>
+            </div>
+          </main>
         </div>
       </div>
     </Router>
