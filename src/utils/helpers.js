@@ -12,33 +12,33 @@ export const debounce = (func, wait) => {
 };
 
 export const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   }).format(amount);
 };
 
-export const formatDate = (dateString, format = 'short') => {
+export const formatDate = (dateString, format = "short") => {
   const date = new Date(dateString);
   const options = {
     short: {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     },
     long: {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     },
     time: {
-      hour: '2-digit',
-      minute: '2-digit'
-    }
+      hour: "2-digit",
+      minute: "2-digit",
+    },
   };
-  
-  return date.toLocaleDateString('en-US', options[format] || options.short);
+
+  return date.toLocaleDateString("en-US", options[format] || options.short);
 };
 
 export const calculateDaysBetween = (startDate, endDate) => {
@@ -69,7 +69,7 @@ export const generatePagination = (currentPage, totalPages) => {
       if (i - l === 2) {
         rangeWithDots.push(l + 1);
       } else if (i - l !== 1) {
-        rangeWithDots.push('...');
+        rangeWithDots.push("...");
       }
     }
     rangeWithDots.push(i);
