@@ -1,15 +1,15 @@
 // src/components/common/SearchBar.jsx
-import React, { useState, useEffect } from 'react';
-import { Search, X } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Search, X } from "lucide-react";
 
-const SearchBar = ({ 
+const SearchBar = ({
   placeholder = "Search...",
   onSearch,
   debounceDelay = 300,
   className = "",
-  showClearButton = true
+  showClearButton = true,
 }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
@@ -23,17 +23,25 @@ const SearchBar = ({
   }, [searchTerm, debounceDelay, onSearch]);
 
   const handleClear = () => {
-    setSearchTerm('');
-    if (onSearch) onSearch('');
+    setSearchTerm("");
+    if (onSearch) onSearch("");
   };
 
   return (
     <div className={`relative ${className}`}>
-      <div className={`relative flex items-center ${isFocused ? 'ring-2 ring-blue-500 ring-offset-2' : ''} rounded-lg transition-all`}>
+      <div
+        className={`relative flex items-center ${
+          isFocused ? "ring-2 ring-blue-500 ring-offset-2" : ""
+        } rounded-lg transition-all`}
+      >
         <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-          <Search className={`w-5 h-5 ${isFocused ? 'text-blue-500' : 'text-gray-400'}`} />
+          <Search
+            className={`w-5 h-5 ${
+              isFocused ? "text-blue-500" : "text-gray-400"
+            }`}
+          />
         </div>
-        
+
         <input
           type="text"
           value={searchTerm}
@@ -43,7 +51,7 @@ const SearchBar = ({
           placeholder={placeholder}
           className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
         />
-        
+
         {showClearButton && searchTerm && (
           <button
             onClick={handleClear}
@@ -53,7 +61,7 @@ const SearchBar = ({
           </button>
         )}
       </div>
-      
+
       {searchTerm && (
         <div className="absolute top-full mt-1 text-xs text-gray-500">
           Press Enter to search
