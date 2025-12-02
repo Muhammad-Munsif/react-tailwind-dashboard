@@ -86,8 +86,6 @@
 //   );
 // }
 
-
-
 // App.js
 import React, { useState } from "react";
 import {
@@ -101,8 +99,8 @@ import AssetList from "./components/assets/AssetList";
 import Login from "./components/auth/Login";
 import Sidebar from "./components/layout/Sidebar";
 import Navbar from "./components/layout/Navbar";
-import Reports from './components/Reports';
-import AddEmployee from './components/AddEmployee';
+import Reports from "./components/Reports";
+import AddEmployee from "./components/AddEmployee";
 import CategoryManagement from "./components/CategoryManagemant";
 import Employees from "./components/Employee";
 import AddAsset from "./components/assets/AddAsset";
@@ -121,12 +119,12 @@ const App = () => {
       <div className="flex min-h-screen bg-gray-50">
         {/* Fixed Sidebar */}
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        
+
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col transition-all duration-300 lg:ml-64">
           {/* Fixed Navbar */}
           <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-          
+
           {/* Scrollable Content */}
           <main className="flex-1 overflow-y-auto pt-16">
             <div className="p-4 md:p-6">

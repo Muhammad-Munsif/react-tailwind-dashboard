@@ -214,7 +214,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         className={`
           fixed top-0 left-0 h-full w-64 bg-gray-900 text-white z-40
           transition-transform duration-300 ease-in-out
-          ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
+          ${
+            sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+          }
         `}
       >
         {/* Logo */}
@@ -232,7 +234,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <Link
                 key={item.path}
                 to={item.path}
-                onClick={() => window.innerWidth < 1024 && setSidebarOpen(false)}
+                onClick={() =>
+                  window.innerWidth < 1024 && setSidebarOpen(false)
+                }
                 className={`
                   flex items-center px-4 py-3 rounded-lg transition-colors
                   ${
