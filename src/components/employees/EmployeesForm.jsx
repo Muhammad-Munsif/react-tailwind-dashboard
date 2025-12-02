@@ -1,22 +1,37 @@
 // src/components/employees/EmployeeForm.jsx
-import React from 'react';
-import { Save, X, Upload, Mail, Phone, User } from 'lucide-react';
+import React from "react";
+import { Save, X, Upload, Mail, Phone, User } from "lucide-react";
 
 const EmployeesForm = ({ employee, onClose, onSubmit }) => {
   const [formData, setFormData] = React.useState({
-    name: employee?.name || '',
-    employeeId: employee?.employeeId || '',
-    department: employee?.department || '',
-    designation: employee?.designation || '',
-    email: employee?.email || '',
-    phone: employee?.phone || '',
-    joinDate: employee?.joinDate || '',
-    address: employee?.address || '',
-    status: employee?.status || 'Active',
+    name: employee?.name || "",
+    employeeId: employee?.employeeId || "",
+    department: employee?.department || "",
+    designation: employee?.designation || "",
+    email: employee?.email || "",
+    phone: employee?.phone || "",
+    joinDate: employee?.joinDate || "",
+    address: employee?.address || "",
+    status: employee?.status || "Active",
   });
 
-  const departments = ['IT', 'HR', 'Finance', 'Marketing', 'Sales', 'Operations', 'Management'];
-  const designations = ['Manager', 'Developer', 'Analyst', 'Executive', 'Director', 'Engineer'];
+  const departments = [
+    "IT",
+    "HR",
+    "Finance",
+    "Marketing",
+    "Sales",
+    "Operations",
+    "Management",
+  ];
+  const designations = [
+    "Manager",
+    "Developer",
+    "Analyst",
+    "Executive",
+    "Director",
+    "Engineer",
+  ];
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -73,8 +88,10 @@ const EmployeesForm = ({ employee, onClose, onSubmit }) => {
             required
           >
             <option value="">Select Department</option>
-            {departments.map(dept => (
-              <option key={dept} value={dept}>{dept}</option>
+            {departments.map((dept) => (
+              <option key={dept} value={dept}>
+                {dept}
+              </option>
             ))}
           </select>
         </div>
@@ -91,8 +108,10 @@ const EmployeesForm = ({ employee, onClose, onSubmit }) => {
             required
           >
             <option value="">Select Designation</option>
-            {designations.map(designation => (
-              <option key={designation} value={designation}>{designation}</option>
+            {designations.map((designation) => (
+              <option key={designation} value={designation}>
+                {designation}
+              </option>
             ))}
           </select>
         </div>
@@ -188,7 +207,7 @@ const EmployeesForm = ({ employee, onClose, onSubmit }) => {
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center"
         >
           <Save className="w-4 h-4 mr-2" />
-          {employee ? 'Update Employee' : 'Add Employee'}
+          {employee ? "Update Employee" : "Add Employee"}
         </button>
       </div>
     </form>
