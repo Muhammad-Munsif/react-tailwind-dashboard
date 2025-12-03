@@ -1,37 +1,53 @@
 // Employees.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Users, Plus, Search, Filter, Edit2, Trash2 } from "lucide-react";
-import AddEmployee from "./employee/AddEmployee";
+import AddEmployeeModal from "./AddEmployee"; // Import the modal component
 
 const Employees = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [employees, setEmployees] = useState([]);
 
-  // Sample employee data
-  const [employees, setEmployees] = useState([
-    { id: 1, name: "John Doe", email: "john@company.com", department: "IT", designation: "Software Engineer", status: "Active" },
-    { id: 2, name: "Jane Smith", email: "jane@company.com", department: "HR", designation: "HR Manager", status: "Active" },
-    { id: 3, name: "Robert Johnson", email: "robert@company.com", department: "Finance", designation: "Financial Analyst", status: "Active" },
-  ]);
+  // Load employees from localStorage on component mount
+  useEffect(() => {
+    const savedEmployees = localStorage.getItem('employees');
+    if (savedEmployees) {
+      setEmployees(JSON.parse(savedEmployees));
+    } else {
+      // Default employees if none in localStorage
+      setEmployees([
+        { id: 1, name: "John Doe", email: "john@company.com", department: "IT", designation: "Software Engineer", status: "Active", employeeId: "EMP001" },
+        { id: 2, name: "Jane Smith", email: "jane@company.com", department: "HR", designation: "HR Manager", status: "Active", employeeId: "EMP002" },
+        { id: 3, name: "Robert Johnson", email: "robert@company.com", department: "Finance", designation: "Financial Analyst", status: "Active", employeeId: "EMP003" },
+      ]);
+    }
+  }, []);
+
+  // Save employees to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('employees', JSON.stringify(employees));
+  }, [employees]);
 
   const handleSaveEmployee = (newEmployee) => {
-    console.log("Saving employee:", newEmployee);
     // Generate a unique ID
     const newEmployeeWithId = {
       ...newEmployee,
-      id: employees.length > 0 ? Math.max(...employees.map(e => e.id)) + 1 : 1
+      id: employees.length > 0 ? Math.max(...employees.map(e => e.id)) + 1 : 1,
+      employeeId: `EMP${String(employees.length + 1).padStart(3, '0')}`
     };
     
     // Add to employees list
-    setEmployees([...employees, newEmployeeWithId]);
+    const updatedEmployees = [...employees, newEmployeeWithId];
+    setEmployees(updatedEmployees);
     
-    // Show success message
-    alert("Employee added successfully!");
+    // Close modal
+    setShowAddModal(false);
   };
 
   const handleDeleteEmployee = (id) => {
     if (window.confirm("Are you sure you want to delete this employee?")) {
-      setEmployees(employees.filter(emp => emp.id !== id));
+      const updatedEmployees = employees.filter(emp => emp.id !== id);
+      setEmployees(updatedEmployees);
     }
   };
 
@@ -39,7 +55,8 @@ const Employees = () => {
     employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
     employee.department.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    employee.designation.toLowerCase().includes(searchTerm.toLowerCase())
+    employee.designation.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (employee.employeeId && employee.employeeId.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
   return (
@@ -111,6 +128,7 @@ const Employees = () => {
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
+                  <th className="py-3.5 px-6 text-left text-sm font-semibold text-gray-700">Employee ID</th>
                   <th className="py-3.5 px-6 text-left text-sm font-semibold text-gray-700">Employee</th>
                   <th className="py-3.5 px-6 text-left text-sm font-semibold text-gray-700">Department</th>
                   <th className="py-3.5 px-6 text-left text-sm font-semibold text-gray-700">Designation</th>
@@ -121,6 +139,9 @@ const Employees = () => {
               <tbody className="divide-y divide-gray-200">
                 {filteredEmployees.map((employee) => (
                   <tr key={employee.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="py-4 px-6 font-medium text-gray-800">
+                      {employee.employeeId || `EMP${String(employee.id).padStart(3, '0')}`}
+                    </td>
                     <td className="py-4 px-6">
                       <div>
                         <p className="font-medium text-gray-800">{employee.name}</p>
@@ -170,9 +191,9 @@ const Employees = () => {
         )}
       </div>
 
-      {/* Modal */}
+      {/* Add Employee Modal - CONDITIONAL RENDERING */}
       {showAddModal && (
-        <AddEmployee 
+        <AddEmployeeModal 
           onClose={() => setShowAddModal(false)} 
           onSave={handleSaveEmployee}
         />
@@ -182,4 +203,3 @@ const Employees = () => {
 };
 
 export default Employees;
-

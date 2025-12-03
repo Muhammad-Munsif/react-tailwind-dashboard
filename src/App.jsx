@@ -101,7 +101,7 @@ import Login from "./components/auth/Login";
 import Sidebar from "./components/layout/Sidebar";
 import Navbar from "./components/layout/Navbar";
 import Reports from "./components/Reports";
-import AddEmployee from "./components/AddEmployee";
+import AddEmployee from "./components/employee/AddEmployee";
 import CategoryManagement from "./components/CategoryManagemant";
 import Employees from "./components/Employee";
 import AddAsset from "./components/assets/AddAsset";
