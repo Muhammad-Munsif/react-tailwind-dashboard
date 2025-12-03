@@ -87,119 +87,119 @@
 // }
 
 // App.js
-// import React, { useState } from "react";
-// import {
-//   BrowserRouter as Router,
-//   Routes,
-//   Route,
-//   Navigate,
-//   useNavigate,
-// } from "react-router-dom";
-// import Dashboard from "./components/dashboard/Dashboard";
-// import AssetList from "./components/assets/AssetList";
-// import Login from "./components/auth/Login";
-// import Sidebar from "./components/layout/Sidebar";
-// import Navbar from "./components/layout/Navbar";
-// import Reports from "./components/Reports";
-// import AddEmployee from "./components/AddEmployee";
-// import CategoryManagement from "./components/CategoryManagemant";
-// import Employees from "./components/Employee";
-// import AddAsset from "./components/assets/AddAsset";
-// // import AssetManagement from "./components/AssetManagemant";
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
+import Dashboard from "./components/dashboard/Dashboard";
+import AssetList from "./components/assets/AssetList";
+import Login from "./components/auth/Login";
+import Sidebar from "./components/layout/Sidebar";
+import Navbar from "./components/layout/Navbar";
+import Reports from "./components/Reports";
+import AddEmployee from "./components/AddEmployee";
+import CategoryManagement from "./components/CategoryManagemant";
+import Employees from "./components/Employee";
+import AddAsset from "./components/assets/AddAsset";
+// import AssetManagement from "./components/AssetManagemant";
 
-// const App = () => {
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
-//   const [sidebarOpen, setSidebarOpen] = useState(true);
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
-//   if (!isAuthenticated) {
-//     return <Login onLogin={() => setIsAuthenticated(true)} />;
-//   }
-
-//   return (
-//     <Router>
-//       <div className="flex min-h-screen bg-gray-50">
-//         {/* Fixed Sidebar */}
-//         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-
-//         {/* Main Content Area */}
-//         <div className="flex-1 flex flex-col transition-all duration-300 lg:ml-64">
-//           {/* Fixed Navbar */}
-//           <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-
-//           {/* Scrollable Content */}
-//           <main className="flex-1 overflow-y-auto pt-16">
-//             <div className="p-4 md:p-6">
-//               <Routes>
-//                 <Route path="/" element={<Navigate to="/dashboard" />} />
-//                 <Route path="/dashboard" element={<Dashboard />} />
-//                 <Route path="/category" element={<CategoryManagement />} />
-//                 <Route path="/Employee" element={<Employees />} />
-//                 <Route path="/assets" element={<AssetList />} />
-//                 <Route path="/employees" element={<AddEmployee />} />
-//                 <Route path="/reports" element={<Reports />} />
-//                 {/* <Route path="/addasset" element={<AddAsset />} /> */}
-//                 <Route
-//                   path="/settings"
-//                   element={
-//                     <div className="p-6">
-//                       <h1 className="text-2xl font-bold">Settings</h1>
-//                     </div>
-//                   }
-//                 />
-//               </Routes>
-//             </div>
-//           </main>
-//         </div>
-//       </div>
-//     </Router>
-//   );
-// };
-
-// export default App;
-
-// src/App.jsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import Layout from './components/layout/Layout';
-import Dashboard from './components/dashboard/Dashboard';
-import AssetList from './components/assets/AssetList';
-import AssetDetails from './components/assets/AssetDetails';
-import AddAsset from './components/assets/AddAsset';
-import IssueAsset from './components/issue-return/IssueAsset';
-import EmployeeList from './components/employees/EmployeeList';
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
-
-function App() {
-  const isAuthenticated = true; // Replace with actual auth check
+  if (!isAuthenticated) {
+    return <Login onLogin={() => setIsAuthenticated(true)} />;
+  }
 
   return (
     <Router>
-      {/* <AuthProvider> */}
-        <div className="App">
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            
-            {isAuthenticated ? (
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Dashboard />} />
-                <Route path="assets" element={<AssetList />} />
-                <Route path="assets/add" element={<AddAsset />} />
-                <Route path="assets/:id" element={<AssetDetails />} />
-                <Route path="issue-asset" element={<IssueAsset />} />
-                <Route path="employees" element={<EmployeeList />} />
-                {/* Add more routes here */}
-              </Route>
-            ) : (
-              <Route path="*" element={<Navigate to="/login" />} />
-            )}
-          </Routes>
+      <div className="flex min-h-screen bg-gray-50">
+        {/* Fixed Sidebar */}
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col transition-all duration-300 lg:ml-64">
+          {/* Fixed Navbar */}
+          <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+
+          {/* Scrollable Content */}
+          <main className="flex-1 overflow-y-auto pt-16">
+            <div className="p-4 md:p-6">
+              <Routes>
+                <Route path="/" element={<Navigate to="/dashboard" />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/category" element={<CategoryManagement />} />
+                <Route path="/Employee" element={<Employees />} />
+                <Route path="/assets" element={<AssetList />} />
+                <Route path="/employees" element={<AddEmployee />} />
+                <Route path="/reports" element={<Reports />} />
+                {/* <Route path="/addasset" element={<AddAsset />} /> */}
+                <Route
+                  path="/settings"
+                  element={
+                    <div className="p-6">
+                      <h1 className="text-2xl font-bold">Settings</h1>
+                    </div>
+                  }
+                />
+              </Routes>
+            </div>
+          </main>
         </div>
-      {/* </AuthProvider> */}
+      </div>
     </Router>
   );
-}
+};
 
 export default App;
+
+// src/App.jsx
+// import React from 'react';
+// import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+// import { AuthProvider } from './context/AuthContext';
+// import Layout from './components/layout/Layout';
+// import Dashboard from './components/dashboard/Dashboard';
+// import AssetList from './components/assets/AssetList';
+// import AssetDetails from './components/assets/AssetDetails';
+// import AddAsset from './components/assets/AddAsset';
+// import IssueAsset from './components/issue-return/IssueAsset';
+// import EmployeeList from './components/employees/EmployeeList';
+// import Login from './components/auth/Login';
+// import Register from './components/auth/Register';
+
+// function App() {
+//   const isAuthenticated = true; // Replace with actual auth check
+
+//   return (
+//     <Router>
+//       {/* <AuthProvider> */}
+//         <div className="App">
+//           <Routes>
+//             <Route path="/login" element={<Login />} />
+//             <Route path="/register" element={<Register />} />
+            
+//             {isAuthenticated ? (
+//               <Route path="/" element={<Layout />}>
+//                 <Route index element={<Dashboard />} />
+//                 <Route path="assets" element={<AssetList />} />
+//                 <Route path="assets/add" element={<AddAsset />} />
+//                 <Route path="assets/:id" element={<AssetDetails />} />
+//                 <Route path="issue-asset" element={<IssueAsset />} />
+//                 <Route path="employees" element={<EmployeeList />} />
+//                 {/* Add more routes here */}
+//               </Route>
+//             ) : (
+//               <Route path="*" element={<Navigate to="/login" />} />
+//             )}
+//           </Routes>
+//         </div>
+//       {/* </AuthProvider> */}
+//     </Router>
+//   );
+// }
+
+// export default App;
