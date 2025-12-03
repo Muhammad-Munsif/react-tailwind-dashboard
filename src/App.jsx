@@ -133,7 +133,7 @@ const App = () => {
                 <Route path="/" element={<Navigate to="/dashboard" />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/category" element={<CategoryManagement />} />
-                <Route path="/Employee" element={<Employees />} />
+                <Route path="/employee" element={<Employees />} />
                 <Route path="/assets" element={<AssetList />} />
                 <Route path="/employees" element={<AddEmployee />} />
                 <Route path="/reports" element={<Reports />} />

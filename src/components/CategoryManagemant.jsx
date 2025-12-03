@@ -12,14 +12,39 @@ const CategoryManagement = () => {
     } catch (error) {
       console.error("Error loading categories from localStorage:", error);
     }
-    
+
     // Default categories if nothing in localStorage
     return [
-      { id: 1, name: "Laptops", count: 45, color: "bg-blue-100 text-blue-800" },
-      { id: 2, name: "Monitors", count: 32, color: "bg-green-100 text-green-800" },
-      { id: 3, name: "Keyboards", count: 78, color: "bg-purple-100 text-purple-800" },
-      { id: 4, name: "Mice", count: 65, color: "bg-yellow-100 text-yellow-800" },
-      { id: 5, name: "Servers", count: 12, color: "bg-red-100 text-red-800" },
+      {
+        id: generateId(),
+        name: "Laptops",
+        count: 12,
+        color: "bg-blue-100 text-blue-800",
+      },
+      {
+        id: generateId(),
+        name: "Monitors",
+        count: 20,
+        color: "bg-green-100 text-green-800",
+      },
+      {
+        id: generateId(),
+        name: "Keyboards",
+        count: 25,
+        color: "bg-purple-100 text-purple-800",
+      },
+      {
+        id: generateId(),
+        name: "Mice",
+        count: 35,
+        color: "bg-yellow-100 text-yellow-800",
+      },
+      {
+        id: generateId(),
+        name: "Servers",
+        count: 45,
+        color: "bg-red-100 text-red-800",
+      },
     ];
   });
 
@@ -67,7 +92,7 @@ const CategoryManagement = () => {
         count: 0,
         color: `${selectedColor.bg} ${selectedColor.text}`,
       };
-      
+
       setCategories([...categories, newCat]);
       setNewCategory("");
       setSelectedColor(colorOptions[0]);
@@ -79,12 +104,13 @@ const CategoryManagement = () => {
   const handleEditClick = (category) => {
     setEditingCategory(category);
     setEditName(category.name);
-    
+
     // Extract color from existing category
-    const currentColor = colorOptions.find(opt => 
-      category.color.includes(opt.bg.split('-')[1]) // Extract color name from class
-    ) || colorOptions[0];
-    
+    const currentColor =
+      colorOptions.find(
+        (opt) => category.color.includes(opt.bg.split("-")[1]) // Extract color name from class
+      ) || colorOptions[0];
+
     setSelectedColor(currentColor);
     setShowEditModal(true);
   };
@@ -92,16 +118,16 @@ const CategoryManagement = () => {
   // Save edited category
   const handleSaveEdit = () => {
     if (editName.trim() && editingCategory) {
-      const updatedCategories = categories.map(cat => 
-        cat.id === editingCategory.id 
-          ? { 
-              ...cat, 
+      const updatedCategories = categories.map((cat) =>
+        cat.id === editingCategory.id
+          ? {
+              ...cat,
               name: editName.trim(),
-              color: `${selectedColor.bg} ${selectedColor.text}`
+              color: `${selectedColor.bg} ${selectedColor.text}`,
             }
           : cat
       );
-      
+
       setCategories(updatedCategories);
       setShowEditModal(false);
       setEditingCategory(null);
@@ -111,13 +137,17 @@ const CategoryManagement = () => {
 
   // Delete category
   const handleDeleteCategory = (id) => {
-    setCategories(categories.filter(cat => cat.id !== id));
+    setCategories(categories.filter((cat) => cat.id !== id));
     setDeleteConfirm(null);
   };
 
   // Clear all data (for testing)
   const handleClearData = () => {
-    if (window.confirm("Are you sure you want to clear all categories? This cannot be undone.")) {
+    if (
+      window.confirm(
+        "Are you sure you want to clear all categories? This cannot be undone."
+      )
+    ) {
       localStorage.removeItem("inventoryCategories");
       setCategories([]);
     }
@@ -125,12 +155,36 @@ const CategoryManagement = () => {
 
   // Reset to default categories
   const handleResetData = () => {
-    if (window.confirm("Reset to default categories? Current data will be replaced.")) {
+    if (
+      window.confirm(
+        "Reset to default categories? Current data will be replaced."
+      )
+    ) {
       const defaultCategories = [
-        { id: 1, name: "Laptops", count: 45, color: "bg-blue-100 text-blue-800" },
-        { id: 2, name: "Monitors", count: 32, color: "bg-green-100 text-green-800" },
-        { id: 3, name: "Keyboards", count: 78, color: "bg-purple-100 text-purple-800" },
-        { id: 4, name: "Mice", count: 65, color: "bg-yellow-100 text-yellow-800" },
+        {
+          id: 1,
+          name: "Laptops",
+          count: 45,
+          color: "bg-blue-100 text-blue-800",
+        },
+        {
+          id: 2,
+          name: "Monitors",
+          count: 32,
+          color: "bg-green-100 text-green-800",
+        },
+        {
+          id: 3,
+          name: "Keyboards",
+          count: 78,
+          color: "bg-purple-100 text-purple-800",
+        },
+        {
+          id: 4,
+          name: "Mice",
+          count: 65,
+          color: "bg-yellow-100 text-yellow-800",
+        },
         { id: 5, name: "Servers", count: 12, color: "bg-red-100 text-red-800" },
       ];
       setCategories(defaultCategories);
@@ -142,12 +196,15 @@ const CategoryManagement = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800">Category Management</h1>
+          <h1 className="text-2xl font-bold text-gray-800">
+            Category Management
+          </h1>
           <p className="text-gray-600 mt-1">
-            {categories.length} categories • {categories.reduce((sum, cat) => sum + cat.count, 0)} total assets
+            {categories.length} categories •{" "}
+            {categories.reduce((sum, cat) => sum + cat.count, 0)} total assets
           </p>
         </div>
-        
+
         <div className="flex flex-wrap gap-2">
           <button
             onClick={handleClearData}
@@ -184,7 +241,7 @@ const CategoryManagement = () => {
                 <X className="w-5 h-5" />
               </button>
             </div>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -197,10 +254,10 @@ const CategoryManagement = () => {
                   placeholder="e.g., Headphones, Printers"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   autoFocus
-                  onKeyDown={(e) => e.key === 'Enter' && handleAddCategory()}
+                  onKeyDown={(e) => e.key === "Enter" && handleAddCategory()}
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Color Theme
@@ -210,8 +267,12 @@ const CategoryManagement = () => {
                     <button
                       key={color.label}
                       onClick={() => setSelectedColor(color)}
-                      className={`p-3 rounded-lg ${color.bg} ${color.text} flex flex-col items-center justify-center ${
-                        selectedColor.label === color.label ? 'ring-2 ring-offset-2 ring-blue-500' : ''
+                      className={`p-3 rounded-lg ${color.bg} ${
+                        color.text
+                      } flex flex-col items-center justify-center ${
+                        selectedColor.label === color.label
+                          ? "ring-2 ring-offset-2 ring-blue-500"
+                          : ""
                       }`}
                     >
                       <Package className="w-5 h-5" />
@@ -220,7 +281,7 @@ const CategoryManagement = () => {
                   ))}
                 </div>
               </div>
-              
+
               <div className="flex justify-end space-x-3 pt-4 border-t">
                 <button
                   onClick={() => setShowAddModal(false)}
@@ -255,7 +316,7 @@ const CategoryManagement = () => {
                 <X className="w-5 h-5" />
               </button>
             </div>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -267,10 +328,10 @@ const CategoryManagement = () => {
                   onChange={(e) => setEditName(e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   autoFocus
-                  onKeyDown={(e) => e.key === 'Enter' && handleSaveEdit()}
+                  onKeyDown={(e) => e.key === "Enter" && handleSaveEdit()}
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Color Theme
@@ -280,8 +341,12 @@ const CategoryManagement = () => {
                     <button
                       key={color.label}
                       onClick={() => setSelectedColor(color)}
-                      className={`p-3 rounded-lg ${color.bg} ${color.text} flex flex-col items-center justify-center ${
-                        selectedColor.label === color.label ? 'ring-2 ring-offset-2 ring-blue-500' : ''
+                      className={`p-3 rounded-lg ${color.bg} ${
+                        color.text
+                      } flex flex-col items-center justify-center ${
+                        selectedColor.label === color.label
+                          ? "ring-2 ring-offset-2 ring-blue-500"
+                          : ""
                       }`}
                     >
                       <Package className="w-5 h-5" />
@@ -290,7 +355,7 @@ const CategoryManagement = () => {
                   ))}
                 </div>
               </div>
-              
+
               <div className="flex justify-between pt-4 border-t">
                 <button
                   onClick={() => {
@@ -304,7 +369,7 @@ const CategoryManagement = () => {
                   <Trash2 className="w-4 h-4 mr-2" />
                   Delete
                 </button>
-                
+
                 <div className="flex space-x-3">
                   <button
                     onClick={() => setShowEditModal(false)}
@@ -340,12 +405,14 @@ const CategoryManagement = () => {
                 <p className="text-gray-600">This action cannot be undone.</p>
               </div>
             </div>
-            
+
             <div className="bg-gray-50 p-4 rounded-lg mb-4">
               <p className="font-medium">{deleteConfirm.name}</p>
-              <p className="text-sm text-gray-600">{deleteConfirm.count} assets in this category</p>
+              <p className="text-sm text-gray-600">
+                {deleteConfirm.count} assets in this category
+              </p>
             </div>
-            
+
             <div className="flex justify-end space-x-3">
               <button
                 onClick={() => setDeleteConfirm(null)}
@@ -371,8 +438,12 @@ const CategoryManagement = () => {
           <div className="inline-block p-4 bg-gray-100 rounded-full mb-4">
             <Package className="w-12 h-12 text-gray-400" />
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No categories yet</h3>
-          <p className="text-gray-600 mb-4">Get started by creating your first category.</p>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">
+            No categories yet
+          </h3>
+          <p className="text-gray-600 mb-4">
+            Get started by creating your first category.
+          </p>
           <button
             onClick={() => setShowAddModal(true)}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center mx-auto"
@@ -409,27 +480,27 @@ const CategoryManagement = () => {
                   </button>
                 </div>
               </div>
-              
+
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 {category.name}
               </h3>
-              
+
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-2xl font-bold text-gray-900">{category.count}</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {category.count}
+                  </p>
                   <p className="text-sm text-gray-600">assets</p>
                 </div>
-                
-                <div className="text-xs text-gray-500">
-                  ID: {category.id}
-                </div>
+
+                <div className="text-xs text-gray-500">ID: {category.id}</div>
               </div>
-              
+
               <div className="mt-4 pt-4 border-t border-gray-100">
                 <button
                   onClick={() => {
-                    const updated = categories.map(cat =>
-                      cat.id === category.id 
+                    const updated = categories.map((cat) =>
+                      cat.id === category.id
                         ? { ...cat, count: cat.count + 1 }
                         : cat
                     );
@@ -442,7 +513,7 @@ const CategoryManagement = () => {
                 <span className="mx-2 text-gray-300">•</span>
                 <button
                   onClick={() => {
-                    const updated = categories.map(cat =>
+                    const updated = categories.map((cat) =>
                       cat.id === category.id && cat.count > 0
                         ? { ...cat, count: cat.count - 1 }
                         : cat
@@ -465,19 +536,23 @@ const CategoryManagement = () => {
           <div className="text-sm text-gray-600">
             <p className="font-medium">Data Storage Info:</p>
             <p>Categories are saved in your browser's localStorage.</p>
-            <p className="text-xs mt-1">Data will persist even after page refresh.</p>
+            <p className="text-xs mt-1">
+              Data will persist even after page refresh.
+            </p>
           </div>
-          
+
           <div className="text-sm">
             <button
               onClick={() => {
                 const dataStr = JSON.stringify(categories, null, 2);
-                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-                const exportFileDefaultName = 'categories-backup.json';
-                
-                const linkElement = document.createElement('a');
-                linkElement.setAttribute('href', dataUri);
-                linkElement.setAttribute('download', exportFileDefaultName);
+                const dataUri =
+                  "data:application/json;charset=utf-8," +
+                  encodeURIComponent(dataStr);
+                const exportFileDefaultName = "categories-backup.json";
+
+                const linkElement = document.createElement("a");
+                linkElement.setAttribute("href", dataUri);
+                linkElement.setAttribute("download", exportFileDefaultName);
                 linkElement.click();
               }}
               className="px-3 py-1.5 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-700 flex items-center"
@@ -492,13 +567,6 @@ const CategoryManagement = () => {
 };
 
 export default CategoryManagement;
-
-
-
-
-
-
-
 
 // import React, { useState } from "react";
 // import { FolderPlus, Edit2, Trash2, Package } from "lucide-react";
@@ -615,7 +683,3 @@ export default CategoryManagement;
 // };
 
 // export default CategoryManagement;
-
-
-
-
