@@ -70,7 +70,7 @@ const Modal = ({
           <div className="p-6">{children}</div>
         </div>
       </div>
-    </div>F
+    </div>
   );
 };
 
