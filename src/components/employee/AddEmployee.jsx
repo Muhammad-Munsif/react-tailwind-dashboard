@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { 
-  UserPlus, 
-  Mail, 
-  Phone, 
-  Building, 
-  Briefcase, 
-  User, 
+import {
+  UserPlus,
+  Mail,
+  Phone,
+  Building,
+  Briefcase,
+  User,
   X,
   Save,
   Calendar,
-  DollarSign
+  DollarSign,
 } from "lucide-react";
 
 const AddEmployee = ({ onClose, onSave }) => {
@@ -33,18 +33,18 @@ const AddEmployee = ({ onClose, onSave }) => {
     "Operations",
     "Research & Development",
     "Customer Support",
-    "Administration"
+    "Administration",
   ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Employee added:", formData);
-    
+
     // If onSave prop is provided, call it
     if (onSave) {
       onSave(formData);
     }
-    
+
     // Clear form and close modal
     setFormData({
       name: "",
@@ -90,16 +90,16 @@ const AddEmployee = ({ onClose, onSave }) => {
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 overflow-y-auto"
       onClick={handleBackdropClick}
     >
       {/* Backdrop */}
       <div className="fixed inset-0 bg-black/70 transition-opacity" />
-      
+
       {/* Modal */}
       <div className="flex min-h-screen items-center justify-center p-4">
-        <div 
+        <div
           className="relative bg-white rounded-xl shadow-2xl w-full max-w-2xl transform transition-all"
           onClick={handleModalClick}
         >
@@ -110,8 +110,12 @@ const AddEmployee = ({ onClose, onSave }) => {
                 <UserPlus className="w-6 h-6 text-blue-600" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-gray-800">Add New Employee</h2>
-                <p className="text-sm text-gray-600">Fill in the employee details below</p>
+                <h2 className="text-xl font-bold text-gray-800">
+                  Add New Employee
+                </h2>
+                <p className="text-sm text-gray-600">
+                  Fill in the employee details below
+                </p>
               </div>
             </div>
             <button
@@ -130,7 +134,7 @@ const AddEmployee = ({ onClose, onSave }) => {
               <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
                 Personal Information
               </h3>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Name */}
                 <div className="space-y-2">
@@ -141,7 +145,9 @@ const AddEmployee = ({ onClose, onSave }) => {
                   <input
                     type="text"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     required
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                     placeholder="John Doe"
@@ -156,7 +162,9 @@ const AddEmployee = ({ onClose, onSave }) => {
                   <input
                     type="text"
                     value={formData.employeeId}
-                    onChange={(e) => setFormData({ ...formData, employeeId: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, employeeId: e.target.value })
+                    }
                     required
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                     placeholder="EMP-001"
@@ -174,7 +182,9 @@ const AddEmployee = ({ onClose, onSave }) => {
                   <input
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     required
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                     placeholder="john.doe@company.com"
@@ -189,7 +199,9 @@ const AddEmployee = ({ onClose, onSave }) => {
                   <input
                     type="tel"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
                     required
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                     placeholder="+1 (555) 123-4567"
@@ -203,7 +215,7 @@ const AddEmployee = ({ onClose, onSave }) => {
               <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
                 Employment Details
               </h3>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Department */}
                 <div className="space-y-2">
@@ -213,13 +225,17 @@ const AddEmployee = ({ onClose, onSave }) => {
                   </label>
                   <select
                     value={formData.department}
-                    onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, department: e.target.value })
+                    }
                     required
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
                   >
                     <option value="">Select department</option>
                     {departments.map((dept) => (
-                      <option key={dept} value={dept}>{dept}</option>
+                      <option key={dept} value={dept}>
+                        {dept}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -233,7 +249,9 @@ const AddEmployee = ({ onClose, onSave }) => {
                   <input
                     type="text"
                     value={formData.designation}
-                    onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, designation: e.target.value })
+                    }
                     required
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                     placeholder="Software Engineer"
@@ -251,7 +269,9 @@ const AddEmployee = ({ onClose, onSave }) => {
                   <input
                     type="date"
                     value={formData.hireDate}
-                    onChange={(e) => setFormData({ ...formData, hireDate: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, hireDate: e.target.value })
+                    }
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                   />
                 </div>
@@ -266,7 +286,9 @@ const AddEmployee = ({ onClose, onSave }) => {
                     <input
                       type="number"
                       value={formData.salary}
-                      onChange={(e) => setFormData({ ...formData, salary: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, salary: e.target.value })
+                      }
                       className="w-full pl-9 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                       placeholder="0.00"
                       min="0"
@@ -282,7 +304,9 @@ const AddEmployee = ({ onClose, onSave }) => {
                   </label>
                   <select
                     value={formData.status}
-                    onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, status: e.target.value })
+                    }
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
                   >
                     <option value="Active">Active</option>
