@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Lock, Mail, Eye, EyeOff, LogIn } from 'lucide-react';
+import React, { useState } from "react";
+import { Lock, Mail, Eye, EyeOff, LogIn } from "lucide-react";
 
 const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login attempt:', formData);
+    console.log("Login attempt:", formData);
     // API call here
     if (onLogin) onLogin();
   };
@@ -26,7 +26,9 @@ const Login = ({ onLogin }) => {
               <Lock className="w-8 h-8 text-blue-600" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-white">Inventory Management</h1>
+          <h1 className="text-2xl font-bold text-white">
+            Inventory Management
+          </h1>
           <p className="text-blue-100 mt-2">Sign in to access your dashboard</p>
         </div>
 
@@ -41,7 +43,9 @@ const Login = ({ onLogin }) => {
             <input
               type="email"
               value={formData.email}
-              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
               required
               className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="you@company.com"
@@ -58,7 +62,9 @@ const Login = ({ onLogin }) => {
               <input
                 type={showPassword ? "text" : "password"}
                 value={formData.password}
-                onChange={(e) => setFormData({...formData, password: e.target.value})}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
                 required
                 className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pr-12"
                 placeholder="Enter your password"
@@ -68,7 +74,11 @@ const Login = ({ onLogin }) => {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
               >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5" />
+                ) : (
+                  <Eye className="w-5 h-5" />
+                )}
               </button>
             </div>
           </div>
@@ -84,7 +94,10 @@ const Login = ({ onLogin }) => {
               />
               <span className="ml-2 text-sm text-gray-600">Remember me</span>
             </label>
-            <a href="#" className="text-sm text-blue-600 hover:text-blue-800 hover:underline">
+            <a
+              href="#"
+              className="text-sm text-blue-600 hover:text-blue-800 hover:underline"
+            >
               Forgot password?
             </a>
           </div>
@@ -104,7 +117,9 @@ const Login = ({ onLogin }) => {
               <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Or continue with</span>
+              <span className="px-2 bg-white text-gray-500">
+                Or continue with
+              </span>
             </div>
           </div>
 
@@ -117,8 +132,11 @@ const Login = ({ onLogin }) => {
 
           {/* Footer */}
           <p className="text-center text-sm text-gray-600">
-            Don't have an account?{' '}
-            <a href="#" className="text-blue-600 hover:text-blue-800 font-medium">
+            Don't have an account?{" "}
+            <a
+              href="#"
+              className="text-blue-600 hover:text-blue-800 font-medium"
+            >
               Contact Administrator
             </a>
           </p>

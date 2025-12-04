@@ -486,7 +486,7 @@
 // export default Dashboard;
 
 import React from "react";
-import BarChart from '../BarChart'
+import BarChart from "../BarChart";
 import {
   Package,
   Users,
@@ -600,7 +600,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div> */}
-        <BarChart/>
+        <BarChart />
       </div>
 
       {/* Alerts Panel */}
@@ -667,10 +667,10 @@ export default Dashboard;
 
 // // src/components/dashboard/Dashboard.jsx
 // import React from 'react';
-// import { 
-//   Package, 
-//   Laptop, 
-//   ShieldAlert, 
+// import {
+//   Package,
+//   Laptop,
+//   ShieldAlert,
 //   CalendarDays,
 //   TrendingUp,
 //   AlertCircle
@@ -754,11 +754,11 @@ export default Dashboard;
 //           <div className="flex items-center space-x-2">
 //             <CalendarDays className="w-5 h-5 text-gray-500" />
 //             <span className="text-sm text-gray-600">
-//               {new Date().toLocaleDateString('en-US', { 
-//                 weekday: 'long', 
-//                 year: 'numeric', 
-//                 month: 'long', 
-//                 day: 'numeric' 
+//               {new Date().toLocaleDateString('en-US', {
+//                 weekday: 'long',
+//                 year: 'numeric',
+//                 month: 'long',
+//                 day: 'numeric'
 //               })}
 //             </span>
 //           </div>
@@ -784,11 +784,11 @@ export default Dashboard;
 //               <div className="w-48 h-48 mx-auto relative">
 //                 {/* Pie Chart Simulation */}
 //                 <div className="absolute inset-0 rounded-full border-8 border-blue-500"></div>
-//                 <div className="absolute inset-0 rounded-full border-8 border-green-500" 
+//                 <div className="absolute inset-0 rounded-full border-8 border-green-500"
 //                      style={{ clipPath: 'inset(0 50% 0 0)' }}></div>
-//                 <div className="absolute inset-0 rounded-full border-8 border-purple-500" 
+//                 <div className="absolute inset-0 rounded-full border-8 border-purple-500"
 //                      style={{ clipPath: 'inset(0 0 50% 50%)' }}></div>
-//                 <div className="absolute inset-0 rounded-full border-8 border-yellow-500" 
+//                 <div className="absolute inset-0 rounded-full border-8 border-yellow-500"
 //                      style={{ clipPath: 'inset(50% 50% 0 0)' }}></div>
 //               </div>
 //               <div className="mt-4 flex justify-center space-x-4">
@@ -832,7 +832,7 @@ export default Dashboard;
 //       {/* Alerts and Recent Activity */}
 //       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 //         <AlertsPanel alerts={alerts} />
-        
+
 //         {/* Recent Issues */}
 //         <ChartCard title="Recent Asset Issues">
 //           <div className="space-y-3">
@@ -863,10 +863,10 @@ export default Dashboard;
 
 // src/components/dashboard/Dashboard.jsx
 // import React from 'react';
-// import { 
-//   Package, 
-//   Laptop, 
-//   ShieldAlert, 
+// import {
+//   Package,
+//   Laptop,
+//   ShieldAlert,
 //   CalendarDays,
 //   TrendingUp,
 //   AlertCircle
@@ -950,11 +950,11 @@ export default Dashboard;
 //           <div className="flex items-center space-x-2">
 //             <CalendarDays className="w-5 h-5 text-gray-500" />
 //             <span className="text-sm text-gray-600">
-//               {new Date().toLocaleDateString('en-US', { 
-//                 weekday: 'long', 
-//                 year: 'numeric', 
-//                 month: 'long', 
-//                 day: 'numeric' 
+//               {new Date().toLocaleDateString('en-US', {
+//                 weekday: 'long',
+//                 year: 'numeric',
+//                 month: 'long',
+//                 day: 'numeric'
 //               })}
 //             </span>
 //           </div>
@@ -980,11 +980,11 @@ export default Dashboard;
 //               <div className="w-48 h-48 mx-auto relative">
 //                 {/* Pie Chart Simulation */}
 //                 <div className="absolute inset-0 rounded-full border-8 border-blue-500"></div>
-//                 <div className="absolute inset-0 rounded-full border-8 border-green-500" 
+//                 <div className="absolute inset-0 rounded-full border-8 border-green-500"
 //                      style={{ clipPath: 'inset(0 50% 0 0)' }}></div>
-//                 <div className="absolute inset-0 rounded-full border-8 border-purple-500" 
+//                 <div className="absolute inset-0 rounded-full border-8 border-purple-500"
 //                      style={{ clipPath: 'inset(0 0 50% 50%)' }}></div>
-//                 <div className="absolute inset-0 rounded-full border-8 border-yellow-500" 
+//                 <div className="absolute inset-0 rounded-full border-8 border-yellow-500"
 //                      style={{ clipPath: 'inset(50% 50% 0 0)' }}></div>
 //               </div>
 //               <div className="mt-4 flex justify-center space-x-4">
@@ -1028,7 +1028,7 @@ export default Dashboard;
 //       {/* Alerts and Recent Activity */}
 //       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 //         <AlertsPanel alerts={alerts} />
-        
+
 //         {/* Recent Issues */}
 //         <ChartCard title="Recent Asset Issues">
 //           <div className="space-y-3">
