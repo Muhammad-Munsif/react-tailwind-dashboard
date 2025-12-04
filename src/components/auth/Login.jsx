@@ -51,7 +51,6 @@ const Login = ({ onLogin }) => {
               placeholder="you@company.com"
             />
           </div>
-
           {/* Password */}
           <div>
             <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
@@ -82,7 +81,6 @@ const Login = ({ onLogin }) => {
               </button>
             </div>
           </div>
-
           {/* Remember & Forgot */}
           <div className="flex items-center justify-between">
             <label className="flex items-center">
@@ -101,7 +99,6 @@ const Login = ({ onLogin }) => {
               Forgot password?
             </a>
           </div>
-
           {/* Submit Button */}
           <button
             type="submit"
@@ -110,7 +107,6 @@ const Login = ({ onLogin }) => {
             <LogIn className="w-5 h-5 mr-2" />
             Sign In
           </button>
-
           {/* Divider */}
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
