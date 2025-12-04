@@ -194,7 +194,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     { path: "/dashboard", label: "Dashboard", icon: Home },
     { path: "/category", label: "CategoryManagement", icon: List },
     { path: "/assets", label: "Assets", icon: Package },
-  { path: "/employees", label: "Employees", icon: Users },
+    { path: "/employees", label: "Employees", icon: Users },
     { path: "/addasset", label: "AddAsset", icon: Users },
     { path: "/reports", label: "Reports", icon: BarChart3 },
     { path: "/settings", label: "Settings", icon: Settings },

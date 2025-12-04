@@ -11,10 +11,10 @@
 //     <div className="min-h-screen bg-gray-50">
 //       {/* Header */}
 //       <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      
+
 //       {/* Sidebar */}
 //       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      
+
 //       {/* Main Content */}
 //       <main className={`pt-16 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'}`}>
 //         <div className="p-4 md:p-6">

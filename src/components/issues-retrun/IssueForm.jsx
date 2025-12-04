@@ -1,27 +1,27 @@
 // src/components/issue-return/IssueForm.jsx
-import React from 'react';
-import { Calendar, User, Package, MessageSquare, Clock } from 'lucide-react';
+import React from "react";
+import { Calendar, User, Package, MessageSquare, Clock } from "lucide-react";
 
 const IssueForm = ({ onClose, onSubmit }) => {
   const [formData, setFormData] = React.useState({
-    assetId: '',
-    employeeId: '',
-    issueDate: new Date().toISOString().split('T')[0],
-    expectedReturnDate: '',
-    comments: '',
-    issuedBy: 'Admin',
+    assetId: "",
+    employeeId: "",
+    issueDate: new Date().toISOString().split("T")[0],
+    expectedReturnDate: "",
+    comments: "",
+    issuedBy: "Admin",
   });
 
   const employees = [
-    { id: 1, name: 'John Doe', department: 'IT' },
-    { id: 2, name: 'Jane Smith', department: 'HR' },
-    { id: 3, name: 'Bob Johnson', department: 'Finance' },
+    { id: 1, name: "John Doe", department: "IT" },
+    { id: 2, name: "Jane Smith", department: "HR" },
+    { id: 3, name: "Bob Johnson", department: "Finance" },
   ];
 
   const availableAssets = [
-    { id: 'A1001', name: 'Dell Latitude 5490', category: 'Laptop' },
-    { id: 'A1002', name: 'HP EliteBook 840', category: 'Laptop' },
-    { id: 'A1003', name: 'Dell 24" Monitor', category: 'Monitor' },
+    { id: "A1001", name: "Dell Latitude 5490", category: "Laptop" },
+    { id: "A1002", name: "HP EliteBook 840", category: "Laptop" },
+    { id: "A1003", name: 'Dell 24" Monitor', category: "Monitor" },
   ];
 
   const handleChange = (e) => {
@@ -50,7 +50,7 @@ const IssueForm = ({ onClose, onSubmit }) => {
               required
             >
               <option value="">Select Asset</option>
-              {availableAssets.map(asset => (
+              {availableAssets.map((asset) => (
                 <option key={asset.id} value={asset.id}>
                   {asset.name} ({asset.category})
                 </option>
@@ -73,7 +73,7 @@ const IssueForm = ({ onClose, onSubmit }) => {
               required
             >
               <option value="">Select Employee</option>
-              {employees.map(emp => (
+              {employees.map((emp) => (
                 <option key={emp.id} value={emp.id}>
                   {emp.name} ({emp.department})
                 </option>
