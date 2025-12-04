@@ -262,12 +262,12 @@ export default AssetList;
 
 // src/components/assets/AssetList.jsx
 // import React, { useState } from 'react';
-// import { 
-//   Search, 
-//   Filter, 
-//   Edit, 
-//   Trash2, 
-//   Eye, 
+// import {
+//   Search,
+//   Filter,
+//   Edit,
+//   Trash2,
+//   Eye,
 //   Download,
 //   Plus,
 //   QrCode,
